@@ -668,6 +668,17 @@ input, select {
   display: block;
 }
 
+.growth-spark--line {
+  width: 108px;
+  height: 36px;
+}
+
+.growth-spark--line text {
+  font-size: 7px;
+  fill: #704322;
+  font-family: Inter, system-ui, sans-serif;
+}
+
 .list { list-style: none; margin: 0; padding: 0; }
 
 .row {
@@ -946,7 +957,7 @@ input, select {
 .movers-chart .bar { grid-template-columns: 6.5rem minmax(0, 1fr) 6.5rem; }
 
 .movers-row {
-  grid-template-columns: 3rem minmax(0, 1fr) 6.5rem 9.5rem 5rem 4.5rem;
+  grid-template-columns: 3rem minmax(0, 1fr) 6.5rem 9.5rem 5rem 7rem;
 }
 
 .cat-pill--miss {

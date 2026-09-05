@@ -166,22 +166,39 @@ function filtered() {
 }
 
 function spark(row) {
-  const pts = [row.wow, row.month, row.q3].map((n) => Number(n) || 0);
-  const max = Math.max(...pts.map((n) => Math.abs(n)), 1);
-  const w = 72;
-  const h = 22;
-  const barW = 16;
-  const gap = 8;
-  const bars = pts
-    .map((n, i) => {
-      const bh = Math.max(2, (Math.abs(n) / max) * (h - 4));
-      const x = 4 + i * (barW + gap);
-      const y = n >= 0 ? h - 2 - bh : 2;
-      const color = n > 0 ? "#2f6b3a" : n < 0 ? "#a13a2a" : "#b7aaa3";
-      return `<rect x="${x}" y="${y}" width="${barW}" height="${bh}" fill="${color}" />`;
+  const now = Number(row.users) || 0;
+  const pts = [
+    Math.max(0, now - (Number(row.q3) || 0)),
+    Math.max(0, now - (Number(row.month) || 0)),
+    Math.max(0, now - (Number(row.wow) || 0)),
+    now,
+  ];
+  const min = Math.min(...pts);
+  const max = Math.max(...pts);
+  const span = max - min || 1;
+  const w = 108;
+  const h = 36;
+  const top = 4;
+  const bottom = 24;
+  const left = 4;
+  const right = w - 4;
+  const coords = pts.map((users, i) => {
+    const x = left + (i / (pts.length - 1)) * (right - left);
+    const y = bottom - ((users - min) / span) * (bottom - top);
+    return { x, y };
+  });
+  const d = coords.map((p, i) => `${i ? "L" : "M"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+  const color = pts[3] > pts[0] ? "#2f6b3a" : pts[3] < pts[0] ? "#a13a2a" : "#a6653c";
+  const dots = coords
+    .map((p) => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="2.2" fill="${color}" />`)
+    .join("");
+  const labels = ["3m", "1m", "1w", "now"]
+    .map((label, i) => {
+      const x = left + (i / 3) * (right - left);
+      return `<text x="${x.toFixed(1)}" y="34" text-anchor="middle">${label}</text>`;
     })
     .join("");
-  return `<svg class="growth-spark" viewBox="0 0 ${w} ${h}" aria-hidden="true">${bars}</svg>`;
+  return `<svg class="growth-spark growth-spark--line" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${d}" fill="none" stroke="${color}" stroke-width="1.75" stroke-linejoin="round" stroke-linecap="round"/>${dots}${labels}</svg>`;
 }
 
 function setKpis(rows) {
