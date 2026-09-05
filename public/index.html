@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketplace Analyzer</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="wordmark" href="index.html">
+      <img src="images/logo.png" alt="GMB Everywhere" width="32" height="32" />
+      <span>Marketplace Analyzer</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="movers.html">Week growth</a>
+      <a class="nav-link" href="how.html">How it works</a>
+      <div class="source-switch" role="group" aria-label="Store">
+        <button type="button" id="src-chrome" aria-pressed="true">Chrome</button>
+        <button type="button" id="src-jira" aria-pressed="false">Jira</button>
+      </div>
+      <button type="button" class="kcmd" id="cmd-open" aria-haspopup="dialog">
+        <kbd>⌘K</kbd>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="lede">
+      <p class="meta-line" id="meta-line">Loaded on this computer</p>
+      <h1>What to build next</h1>
+      <p>See what people already use. Find low scores. Then see what they want fixed.</p>
+    </section>
+
+    <section class="dash" aria-label="Where to look">
+      <h2 class="dash-title">Where to look</h2>
+      <div class="kpis" id="kpis"></div>
+      <div class="ideas">
+        <article class="idea">
+          <h3>Low stars, lots of use</h3>
+          <p>People use these a lot. Scores are not great. Room to do it better.</p>
+          <ul class="idea-list" id="better"></ul>
+        </article>
+        <article class="idea">
+          <h3>Still used, not updated</h3>
+          <p>Lots of users. Last change was over a year ago.</p>
+          <ul class="idea-list" id="stale"></ul>
+        </article>
+        <article class="idea">
+          <h3>Lots of users, few apps</h3>
+          <p>Busy types with not many apps. Easier to join.</p>
+          <ul class="idea-list" id="thin"></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="jobs" id="jobs" hidden>
+      <div class="chart-head">
+        <h2 id="jobs-title">What kind of product</h2>
+        <p>Same type, different jobs. Click one to zoom in.</p>
+      </div>
+      <div class="job-grid" id="job-grid"></div>
+    </section>
+
+    <section class="pain" id="pain" hidden>
+      <div class="pain-head">
+        <h2 id="pain-title">What to build</h2>
+        <p id="pain-meta">Pick a type in “Low stars, lots of use” to see what people want added.</p>
+      </div>
+      <p class="pain-note" id="pain-note" hidden></p>
+      <ol class="pain-list" id="pain-list"></ol>
+    </section>
+
+    <section class="chart-block" aria-label="Users by type">
+      <div class="chart-head">
+        <h2 id="chart-title">Users by type</h2>
+        <p>Click a bar to see only that type. Click it again or hit Reset to see all.</p>
+      </div>
+      <div class="bars" id="cats"></div>
+    </section>
+
+    <section class="toolbar">
+      <div class="filters">
+        <label class="field">Search
+          <input id="q" type="search" placeholder="Name or maker" autocomplete="off" />
+        </label>
+        <label class="field"><span id="demand-label">Min users</span>
+          <input id="min-demand" type="number" min="0" step="1000" value="0" />
+        </label>
+        <label class="field">Min stars
+          <input id="min-rating" type="number" min="0" max="5" step="0.1" value="0" />
+        </label>
+        <label class="field">Min reviews
+          <input id="min-reviews" type="number" min="0" step="10" value="20" />
+        </label>
+        <label class="field" id="type-field">Kind
+          <select id="item-category">
+            <option value="extension">Extensions</option>
+            <option value="">All kinds</option>
+            <option value="theme">Themes</option>
+            <option value="application">Apps</option>
+          </select>
+        </label>
+      </div>
+      <div class="sorts" role="group" aria-label="Sort">
+        <button type="button" data-sort="demand" id="sort-demand" aria-pressed="true">Users</button>
+        <button type="button" data-sort="reviews" aria-pressed="false">Reviews</button>
+        <button type="button" data-sort="rating" aria-pressed="false">Stars</button>
+        <button type="button" data-sort="opportunity" aria-pressed="false">Gap</button>
+        <button type="button" class="btn" id="reset" disabled>Reset</button>
+      </div>
+    </section>
+
+    <div class="chips" id="chips" hidden></div>
+    <p class="status" id="status">Loading…</p>
+
+    <section class="growth" id="growth" hidden>
+      <button type="button" class="growth-toggle" id="growth-toggle" aria-expanded="true">
+        Users this week vs last week · top 100
+      </button>
+      <div id="growth-body">
+        <p class="growth-meta" id="growth-meta">Loading growth…</p>
+        <ol class="growth-list" id="growth-list"></ol>
+      </div>
+    </section>
+
+    <ol class="list" id="list"></ol>
+    <div class="pager">
+      <button type="button" class="btn" id="prev" disabled>Back</button>
+      <button type="button" class="btn" id="next" disabled>Next</button>
+    </div>
+  </main>
+
+  <div class="palette" id="palette" hidden>
+    <div class="palette-panel" role="dialog" aria-modal="true" aria-label="Jump">
+      <input id="palette-q" type="search" placeholder="Jump to a sort or store" />
+      <ul class="palette-list" id="palette-list"></ul>
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

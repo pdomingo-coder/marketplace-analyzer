@@ -1,0 +1,22 @@
+{
+  "name": "marketplace-analyzer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Chrome Web Store + Jira Marketplace ranking tool",
+  "scripts": {
+    "ingest:chrome": "node scripts/ingest-chrome.mjs",
+    "ingest:jira": "node scripts/ingest-jira.mjs",
+    "snapshot:jira": "node scripts/snapshot-jira.mjs",
+    "ingest:movers": "node scripts/ingest-movers.mjs",
+    "ingest": "npm run ingest:chrome && npm run ingest:jira",
+    "start": "node server.mjs",
+    "warm:notes": "node scripts/warm-notes.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "csv-parse": "^5.6.0"
+  }
+}

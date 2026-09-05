@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How it works · Marketplace Analyzer</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="wordmark" href="index.html">
+      <img src="images/logo.png" alt="GMB Everywhere" width="32" height="32" />
+      <span>Marketplace Analyzer</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="movers.html">Week growth</a>
+      <a class="nav-link" href="how.html" aria-current="page">How it works</a>
+      <a class="btn btn--primary" href="index.html">Open the tool</a>
+    </div>
+  </header>
+
+  <main class="wrap how">
+    <section class="lede">
+      <p class="meta-line">Plain English</p>
+      <h1>How this tool works</h1>
+      <p>It does not guess. It counts real apps people already use, then shows where a better one could win.</p>
+    </section>
+
+    <ol class="how-steps">
+      <li class="how-step">
+        <span class="how-num">1</span>
+        <div>
+          <h2>Load two stores on this computer</h2>
+          <p>Chrome comes from your ranking file. Jira comes from Atlassian’s public list. Nothing is uploaded. The dump never goes into a chat.</p>
+          <div class="how-graph" aria-hidden="true">
+            <div class="how-box">Chrome file</div>
+            <span class="how-chev"></span>
+            <div class="how-box how-box--ink">This Mac</div>
+            <span class="how-chev how-chev--flip"></span>
+            <div class="how-box">Jira list</div>
+          </div>
+        </div>
+      </li>
+      <li class="how-step">
+        <span class="how-num">2</span>
+        <div>
+          <h2>Rank what is already busy</h2>
+          <p>Users (or installs), stars, and review count. Gap is high use + lots of notes + weaker stars. That is “room to do it better.”</p>
+          <div class="how-graph how-graph--stack" aria-hidden="true">
+            <div class="how-meter"><span style="width:92%"></span><em>Lots of users</em></div>
+            <div class="how-meter"><span style="width:40%"></span><em>Weaker stars</em></div>
+            <div class="how-meter"><span style="width:70%"></span><em>Bigger gap</em></div>
+          </div>
+        </div>
+      </li>
+      <li class="how-step">
+        <span class="how-num">3</span>
+        <div>
+          <h2>Pick a type, then a job</h2>
+          <p>Productivity is a shelf, not a product. The next cut is the job: PDF, work sign-in, checklists, time tracking. Same type. Different things to build.</p>
+          <div class="how-graph" aria-hidden="true">
+            <div class="how-box">Productivity</div>
+            <span class="how-chev"></span>
+            <div class="how-pills">
+              <span>PDF</span>
+              <span>Sign-in</span>
+              <span>Ads</span>
+              <span>VPN</span>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="how-step">
+        <span class="how-num">4</span>
+        <div>
+          <h2>Read what people already said</h2>
+          <p>We pull live notes from the store for the busiest apps in that job. AI reads them and groups real asks. “It is broken” stays a side note. The cards are things to build, with a quote from the store.</p>
+          <div class="how-graph" aria-hidden="true">
+            <div class="how-quote">“Stay signed in. No install loop.”</div>
+            <div class="how-quote">“Honor our branch format.”</div>
+          </div>
+        </div>
+      </li>
+      <li class="how-step">
+        <span class="how-num">5</span>
+        <div>
+          <h2>You decide what to build</h2>
+          <p>The list is still there. Sort by users, stars, reviews, or gap. Click Reset when you want the full shelf again.</p>
+        </div>
+      </li>
+    </ol>
+
+    <section class="how-built">
+      <h2>How we built it</h2>
+      <ul class="how-facts">
+        <li>
+          <h3>Chrome</h3>
+          <p>Your ranking CSV is streamed into a local database. We keep name, users, stars, type, and a short blurb. We do not paste the dump into chat.</p>
+        </li>
+        <li>
+          <h3>Jira</h3>
+          <p>The official Marketplace list. Installs, stars, and type. No third-party scrape. We freeze today’s install counts on this Mac so you can compare growth after you ingest again.</p>
+        </li>
+        <li>
+          <h3>Jobs</h3>
+          <p>We match words in the name and blurb to jobs people pay for. “Acrobat” and “PDF” land in PDF. “LastPass” lands in passwords.</p>
+        </li>
+        <li>
+          <h3>Notes</h3>
+          <p>On click, we read public reviews for a few busy apps. AI groups the asks. Quotes stay from the store. If AI is off, we fall back to word match. Stars already show mood.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="how-faq">
+      <h2>Quick questions</h2>
+      <h4>Where does the data live?</h4>
+      <p>On this computer, in a local file. The app runs at 127.0.0.1. It is not on the public web.</p>
+      <h4>Why is a box empty?</h4>
+      <p>That filter has no matches. Example: you already zoomed into one type, so “weak types” has nowhere else to point. The list below still has the apps.</p>
+      <h4>What does Gap mean?</h4>
+      <p>Busy product, lots of notes, not-great stars. A place a cleaner product could win.</p>
+      <h4>Are the user counts guesses?</h4>
+      <p>No. Chrome uses the ranking file. Jira uses Atlassian’s install count.</p>
+      <h4>How does Jira week growth work?</h4>
+      <p>Atlassian does not publish last week’s installs. We save a local snapshot, then compare after you run ingest:jira again.</p>
+      <h4>What is the Week growth page?</h4>
+      <p>A second Chrome file with week / month / 3-month user change, for extensions at 10k+ users. We join it to the Aug 25 dump for type and listing URL. Sort by week % to find new apps that jumped.</p>
+      <h4>Does AI make up comments?</h4>
+      <p>No. It only groups notes from the store. Each card keeps a real quote. If AI is down, we fall back to word match.</p>
+    </section>
+
+    <p class="how-cta"><a class="btn btn--primary" href="index.html">Back to the tool</a></p>
+  </main>
+</body>
+</html>

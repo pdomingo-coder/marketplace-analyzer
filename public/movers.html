@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Week growth · Marketplace Analyzer</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="wordmark" href="index.html">
+      <img src="images/logo.png" alt="GMB Everywhere" width="32" height="32" />
+      <span>Marketplace Analyzer</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="index.html">Shelf</a>
+      <a class="nav-link" href="movers.html" aria-current="page">Week growth</a>
+      <a class="nav-link" href="how.html">How it works</a>
+    </div>
+  </header>
+
+  <main class="wrap wrap--wide">
+    <section class="lede">
+      <p class="meta-line">Chrome · 10k+ users · week change</p>
+      <h1>Who grew this week</h1>
+      <p>Sort by growth rate, not size. A new extension that jumped fast is the thing to copy, even if it is still small next to Adobe. Google rounds users, so a 1 → 20,000 jump is a bucket change, not two million percent real people.</p>
+    </section>
+
+    <section class="kpis" id="kpis"></section>
+
+    <section class="movers-charts" aria-label="Growth analysis">
+      <article class="movers-chart">
+        <h2>Week change</h2>
+        <p>How the 10k+ list moved. Most stay flat because Google rounds users.</p>
+        <div class="bars" id="hist"></div>
+      </article>
+      <article class="movers-chart">
+        <h2>Fast types</h2>
+        <p>Median week growth for types we could match to the Aug 25 dump. Click a bar to filter.</p>
+        <div class="bars" id="cats"></div>
+      </article>
+      <article class="movers-chart">
+        <h2>Age vs growth</h2>
+        <p>Newer listings vs older ones. Click a bar to filter.</p>
+        <div class="bars" id="ages"></div>
+      </article>
+    </section>
+
+    <section class="toolbar">
+      <div class="filters">
+        <label class="field">Search
+          <input id="q" type="search" placeholder="Name or maker" autocomplete="off" />
+        </label>
+        <label class="field">Min week %
+          <input id="min-pct" type="number" min="0" step="1" value="0" />
+        </label>
+        <label class="field">Min users
+          <input id="min-users" type="number" min="0" step="1000" value="10000" />
+        </label>
+        <label class="field">Min stars
+          <input id="min-stars" type="number" min="0" max="5" step="0.1" value="0" />
+        </label>
+      </div>
+      <div class="sorts" role="group" aria-label="Sort and filters">
+        <button type="button" data-sort="wowPct" aria-pressed="true">Week %</button>
+        <button type="button" data-sort="wow" aria-pressed="false">Week users</button>
+        <button type="button" data-sort="users" aria-pressed="false">Users</button>
+        <button type="button" data-sort="monthPct" aria-pressed="false">Month %</button>
+        <button type="button" data-sort="created" aria-pressed="false">Newest</button>
+        <button type="button" id="growers" aria-pressed="true">Grew only</button>
+        <button type="button" id="newish" aria-pressed="false">Under 1 year</button>
+        <button type="button" id="prior" aria-pressed="false">Was 10k last week</button>
+        <button type="button" class="btn" id="reset" disabled>Reset</button>
+      </div>
+    </section>
+
+    <div class="chips" id="chips" hidden></div>
+    <p class="status" id="status">Loading…</p>
+
+    <ol class="list movers-list" id="list"></ol>
+    <div class="pager">
+      <button type="button" class="btn" id="prev" disabled>Back</button>
+      <button type="button" class="btn" id="next" disabled>Next</button>
+    </div>
+  </main>
+  <script src="movers.js" type="module"></script>
+</body>
+</html>
