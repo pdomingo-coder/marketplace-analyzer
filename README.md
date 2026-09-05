@@ -16,6 +16,8 @@ npm start
 
 Open [http://127.0.0.1:4747](http://127.0.0.1:4747).
 
+Share the week-growth list: [https://pdomingo-coder.github.io/marketplace-analyzer/movers.html](https://pdomingo-coder.github.io/marketplace-analyzer/movers.html)
+
 Chrome ingest defaults to:
 
 `/Users/paolodomingo/Downloads/ranking-stats-20260825.csv`
