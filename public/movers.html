@@ -59,10 +59,16 @@
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <section class="mb-8 max-w-3xl">
-      <p class="meta-line">Chrome · 10k+ users · week change</p>
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <p class="meta-line" id="meta-line">Chrome · 10k+ users · week change</p>
+        <div class="source-switch" role="group" aria-label="Store">
+          <button type="button" id="src-chrome" aria-pressed="true">Chrome</button>
+          <button type="button" id="src-jira" aria-pressed="false">Jira</button>
+        </div>
+      </div>
       <h1 class="text-4xl font-bold text-neutral-900 mt-2">Who grew this week</h1>
-      <p class="text-sm text-neutral-800 mt-3">Sort by growth rate, not size. A new extension that jumped fast is the thing to copy, even if it is still small next to Adobe. Google rounds users, so a 1 → 20,000 jump is a bucket change, not two million percent real people.</p>
-      <p class="text-sm text-neutral-800 mt-2">If helpdesk is a no, we already pulled the growers next to GMB Everywhere and RocketSend.io. <a href="lanes.html" class="font-semibold text-neutral-900 hover:text-primary-600">Open the GBP &amp; WhatsApp brief</a>.</p>
+      <p class="text-sm text-neutral-800 mt-3" id="lead">Sort by growth rate, not size. A new extension that jumped fast is the thing to copy, even if it is still small next to Adobe. Google rounds users, so a 1 → 20,000 jump is a bucket change, not two million percent real people.</p>
+      <p class="text-sm text-neutral-800 mt-2" id="chrome-brief">If helpdesk is a no, we already pulled the growers next to GMB Everywhere and RocketSend.io. <a href="lanes.html" class="font-semibold text-neutral-900 hover:text-primary-600">Open the GBP &amp; WhatsApp brief</a>.</p>
     </section>
 
     <section class="kpis" id="kpis"></section>
@@ -70,15 +76,15 @@
     <section class="movers-charts" aria-label="Growth analysis">
       <article class="movers-chart">
         <h2>Week change</h2>
-        <p>How the 10k+ list moved. Most stay flat because Google rounds users.</p>
+        <p id="hist-copy">How the 10k+ list moved. Most stay flat because Google rounds users.</p>
         <div class="bars" id="hist"></div>
       </article>
       <article class="movers-chart">
         <h2>Fast types</h2>
-        <p>Median week growth for types we could match to the Aug 25 dump. Click a bar to filter.</p>
+        <p id="cats-copy">Median week growth for types we could match to the Aug 25 dump. Click a bar to filter.</p>
         <div class="bars" id="cats"></div>
       </article>
-      <article class="movers-chart">
+      <article class="movers-chart" id="ages-chart" data-chrome-only>
         <h2>Age vs growth</h2>
         <p>Newer listings vs older ones. Click a bar to filter.</p>
         <div class="bars" id="ages"></div>
@@ -93,7 +99,7 @@
         <label class="field">Min week %
           <input id="min-pct" type="number" min="0" step="1" value="0" />
         </label>
-        <label class="field">Min users
+        <label class="field"><span id="min-users-label">Min users</span>
           <input id="min-users" type="number" min="0" step="1000" value="10000" />
         </label>
         <label class="field">Min stars
@@ -102,14 +108,14 @@
       </div>
       <div class="sorts" role="group" aria-label="Sort and filters">
         <button type="button" data-sort="wowPct" aria-pressed="true">Week %</button>
-        <button type="button" data-sort="combined" aria-pressed="false" title="50% last week, 30% rest of month, 20% older 2 months. Each stretch capped at 100%.">Combined %</button>
+        <button type="button" data-chrome-only data-sort="combined" aria-pressed="false" title="50% last week, 30% rest of month, 20% older 2 months. Each stretch capped at 100%.">Combined %</button>
         <button type="button" data-sort="wow" aria-pressed="false">Week users</button>
         <button type="button" data-sort="users" aria-pressed="false">Users</button>
-        <button type="button" data-sort="monthPct" aria-pressed="false">Month %</button>
-        <button type="button" data-sort="created" aria-pressed="false">Newest</button>
+        <button type="button" data-chrome-only data-sort="monthPct" aria-pressed="false">Month %</button>
+        <button type="button" data-chrome-only data-sort="created" aria-pressed="false">Newest</button>
         <button type="button" id="growers" aria-pressed="true">Grew only</button>
-        <button type="button" id="newish" aria-pressed="false">Under 1 year</button>
-        <button type="button" id="prior" aria-pressed="false">Was 10k last week</button>
+        <button type="button" data-chrome-only id="newish" aria-pressed="false">Under 1 year</button>
+        <button type="button" data-chrome-only id="prior" aria-pressed="false">Was 10k last week</button>
         <button type="button" class="btn" id="reset" disabled>Reset</button>
       </div>
     </section>

@@ -1,4 +1,4 @@
-const { escapeHtml, niceName, categoryHtml } = await import("./shared.js");
+const { escapeHtml, niceName, categoryHtml, categoryParts } = await import("./shared.js");
 const { bindNav } = await import("./nav.js");
 
 const LIMIT = 50;
@@ -20,11 +20,13 @@ const HIST = [
   { key: "hot", label: "100%+", test: (p) => p != null && p >= 1 },
 ];
 
+const params = new URLSearchParams(location.search);
 const state = {
+  source: params.get("source") === "jira" ? "jira" : "chrome",
   q: "",
   sort: "wowPct",
   minPct: 0,
-  minUsers: 10000,
+  minUsers: params.get("source") === "jira" ? 50 : 10000,
   minStars: 0,
   growers: true,
   newish: false,
@@ -34,6 +36,9 @@ const state = {
   hist: "",
   offset: 0,
 };
+
+const isJira = () => state.source === "jira";
+const defaultMinUsers = () => (isJira() ? 50 : 10000);
 
 let all = [];
 let meta = { asOf: "", matched: 0, count: 0 };
@@ -46,8 +51,9 @@ function fmt(n) {
   return x.toLocaleString();
 }
 
-function storeUrl(id) {
-  return `https://chromewebstore.google.com/detail/${id}`;
+function storeUrl(row) {
+  if (row?.url) return row.url;
+  return `https://chromewebstore.google.com/detail/${row?.id || row}`;
 }
 
 function rate(users, delta) {
@@ -131,7 +137,10 @@ function matches(row, skip = {}) {
   if (state.growers && row.wow <= 0) return false;
   if (state.newish && !(row.ageDays != null && row.ageDays < 365)) return false;
   if (state.prior && lastWeek(row) < 10000) return false;
-  if (state.minUsers && row.users < state.minUsers) return false;
+  if (state.minUsers) {
+    const base = isJira() ? lastWeek(row) : row.users;
+    if (base < state.minUsers) return false;
+  }
   if (state.minStars && !(row.stars >= state.minStars)) return false;
   if (state.minPct && !(row.wowPct != null && row.wowPct * 100 >= state.minPct)) return false;
   if (!skip.category && state.category && row.category !== state.category) return false;
@@ -220,8 +229,8 @@ function setKpis(rows) {
   const bits = [
     [fmt(rows.length), "In this view"],
     [fmt(growers.length), "Grew this week"],
-    [growers.length ? `${(median(growers.map((r) => r.wowPct)) * 100).toFixed(1)}%` : "—", "Median week %"],
-    [fmt(newFast.length), "New and fast"],
+    [growers.length ? `${(median(growers.map((r) => r.wowPct).filter((n) => n != null)) * 100).toFixed(1)}%` : "—", "Median week %"],
+    isJira() ? [fmt(meta.compared), "Had last week"] : [fmt(newFast.length), "New and fast"],
   ];
   $("kpis").innerHTML = bits
     .map(
@@ -268,7 +277,7 @@ function renderCharts(rows) {
     byCat.set(row.category, cur);
   }
   const catItems = [...byCat.entries()]
-    .filter(([, pcts]) => pcts.length >= 8)
+    .filter(([, pcts]) => pcts.length >= (isJira() ? 5 : 8))
     .map(([key, pcts]) => ({
       key,
       label: categoryParts(key).join(" · ") || key,
@@ -284,6 +293,7 @@ function renderCharts(rows) {
     render();
   });
 
+  if (isJira() || !$("ages")) return;
   const ageItems = Object.values(AGE).map((a) => {
     const set = rows.filter((r) => ageKey(r.ageDays) === a.key);
     const growers = set.filter((r) => r.wow > 0);
@@ -331,8 +341,15 @@ function renderRows(rows) {
     return;
   }
   const head = document.createElement("li");
-  head.className = "row row-head movers-row";
-  head.innerHTML = `
+  head.className = `row row-head movers-row${isJira() ? " movers-row--jira" : ""}`;
+  head.innerHTML = isJira()
+    ? `
+    <span>#</span>
+    <span>Name</span>
+    <span class="num">Installs</span>
+    <span class="num">Week</span>
+  `
+    : `
     <span>#</span>
     <span>Name</span>
     <span class="num">Users</span>
@@ -344,7 +361,7 @@ function renderRows(rows) {
   list.append(head);
   page.forEach((row, i) => {
     const li = document.createElement("li");
-    li.className = "row movers-row";
+    li.className = `row movers-row${isJira() ? " movers-row--jira" : ""}`;
     const g = pctLabel(row);
     const monthPct = rate(row.users, row.month);
     const month = monthPct == null ? "—" : `${row.month >= 0 ? "+" : ""}${(monthPct * 100).toFixed(1)}%`;
@@ -355,24 +372,30 @@ function renderRows(rows) {
         : row.ageDays < 365
           ? `${Math.max(1, Math.round(row.ageDays / 30))} mo old`
           : `${Math.round(row.ageDays / 365)} yr old`;
+    const extra = isJira()
+      ? ""
+      : `<span class="num hide-sm">${escapeHtml(month)}</span>
+      <span class="num hide-sm ${combo.cls}">${escapeHtml(combo.text)}</span>
+      <span class="hide-sm">${spark(row)}</span>`;
+    const miss = !isJira() && !row.matched ? `<span class="cat-pill cat-pill--miss">Not in Aug dump</span>` : "";
     li.innerHTML = `
       <span class="rank">${state.offset + i + 1}</span>
       <span>
-        <a class="name" href="${storeUrl(row.id)}" target="_blank" rel="noopener">${escapeHtml(row.name)}</a>
-        <span class="cat-row">${categoryHtml(row.category)}${row.matched ? "" : `<span class="cat-pill cat-pill--miss">Not in Aug dump</span>`}</span>
+        <a class="name" href="${storeUrl(row)}" target="_blank" rel="noopener">${escapeHtml(row.name)}</a>
+        <span class="cat-row">${categoryHtml(row.category)}${miss}</span>
         <span class="sub">${escapeHtml([row.author, age, row.payment].filter(Boolean).join(" · "))}</span>
       </span>
       <span class="num">${fmt(row.users)}</span>
       <span class="num ${g.cls}">${escapeHtml(g.text)}</span>
-      <span class="num hide-sm">${escapeHtml(month)}</span>
-      <span class="num hide-sm ${combo.cls}">${escapeHtml(combo.text)}</span>
-      <span class="hide-sm">${spark(row)}</span>
+      ${extra}
     `;
     list.append(li);
   });
   const from = state.offset + 1;
   const to = state.offset + page.length;
-  $("status").textContent = `${from.toLocaleString()}–${to.toLocaleString()} of ${rows.length.toLocaleString()} · ${meta.matched.toLocaleString()} of ${meta.count.toLocaleString()} matched the Aug 25 dump`;
+  $("status").textContent = isJira()
+    ? `${from.toLocaleString()}–${to.toLocaleString()} of ${rows.length.toLocaleString()} · ${fmt(meta.compared)} compared to ${meta.from}`
+    : `${from.toLocaleString()}–${to.toLocaleString()} of ${rows.length.toLocaleString()} · ${meta.matched.toLocaleString()} of ${meta.count.toLocaleString()} matched the Aug 25 dump`;
   $("prev").disabled = state.offset <= 0;
   $("next").disabled = state.offset + page.length >= rows.length;
 }
@@ -382,7 +405,7 @@ function dirty() {
     state.q ||
     state.sort !== "wowPct" ||
     state.minPct ||
-    state.minUsers !== 10000 ||
+    state.minUsers !== defaultMinUsers() ||
     state.minStars ||
     !state.growers ||
     state.newish ||
@@ -407,7 +430,7 @@ function reset() {
     q: "",
     sort: "wowPct",
     minPct: 0,
-    minUsers: 10000,
+    minUsers: defaultMinUsers(),
     minStars: 0,
     growers: true,
     newish: false,
@@ -419,7 +442,7 @@ function reset() {
   });
   $("q").value = "";
   $("min-pct").value = "0";
-  $("min-users").value = "10000";
+  $("min-users").value = String(defaultMinUsers());
   $("min-stars").value = "0";
   $("growers").setAttribute("aria-pressed", "true");
   $("newish").setAttribute("aria-pressed", "false");
@@ -499,12 +522,78 @@ for (const btn of document.querySelectorAll(".sorts [data-sort]")) {
   });
 }
 
-bindNav();
-$("status").textContent = "Loading the 10k+ week file…";
-const data = await fetch("data/movers.json").then((r) => {
-  if (!r.ok) throw new Error("Missing movers.json. Run npm run ingest:movers");
-  return r.json();
-});
-all = (data.rows || []).map((row) => ({ ...row, combined: combinedPct(row) }));
-meta = { asOf: data.asOf || "", matched: data.matched || 0, count: data.count || all.length };
-render();
+function applySourceUi() {
+  const jira = isJira();
+  $("src-chrome").setAttribute("aria-pressed", jira ? "false" : "true");
+  $("src-jira").setAttribute("aria-pressed", jira ? "true" : "false");
+  $("meta-line").textContent = jira
+    ? `Jira · ${meta.from || "last week"} → ${meta.to || meta.asOf} · ${meta.days || 7} days`
+    : "Chrome · 10k+ users · week change";
+  $("lead").textContent = jira
+    ? "Sort by growth rate vs last week’s snapshot. A 1 to 3 jump looks huge as a percent, so the list starts at 50 installs last week."
+    : "Sort by growth rate, not size. A new extension that jumped fast is the thing to copy, even if it is still small next to Adobe. Google rounds users, so a 1 → 20,000 jump is a bucket change, not two million percent real people.";
+  $("hist-copy").textContent = jira
+    ? "How Jira apps moved vs the last weekly snapshot."
+    : "How the 10k+ list moved. Most stay flat because Google rounds users.";
+  $("cats-copy").textContent = jira
+    ? "Median week growth by marketplace type. Click a bar to filter."
+    : "Median week growth for types we could match to the Aug 25 dump. Click a bar to filter.";
+  $("min-users-label").textContent = jira ? "Min installs" : "Min users";
+  $("min-users").step = jira ? "10" : "1000";
+  $("min-users").value = String(state.minUsers);
+  const brief = $("chrome-brief");
+  if (brief) brief.hidden = jira;
+  for (const el of document.querySelectorAll("[data-chrome-only]")) {
+    el.hidden = jira;
+  }
+}
+
+function setSource(source) {
+  const url = new URL(location.href);
+  if (source === "jira") url.searchParams.set("source", "jira");
+  else url.searchParams.delete("source");
+  location.assign(`${url.pathname}${url.search}`);
+}
+
+async function boot() {
+  bindNav();
+  $("src-chrome").addEventListener("click", () => setSource("chrome"));
+  $("src-jira").addEventListener("click", () => setSource("jira"));
+  applySourceUi();
+  $("status").textContent = isJira() ? "Loading Jira week comparison…" : "Loading the 10k+ week file…";
+  try {
+    const path = isJira() ? "data/jira-growth.json" : "data/movers.json";
+    const data = await fetch(path).then((r) => {
+      if (!r.ok) throw new Error(isJira() ? "Missing jira-growth.json. Run npm run ingest:jira" : "Missing movers.json. Run npm run ingest:movers");
+      return r.json();
+    });
+    if (isJira()) {
+      all = (data.rows || []).map((row) => ({
+        ...row,
+        matched: true,
+        month: 0,
+        q3: 0,
+        combined: null,
+      }));
+      meta = {
+        asOf: data.asOf || "",
+        from: data.from || "",
+        to: data.to || data.asOf || "",
+        days: data.days || 0,
+        compared: data.compared || 0,
+        matched: data.compared || 0,
+        count: data.grew || all.length,
+      };
+    } else {
+      all = (data.rows || []).map((row) => ({ ...row, combined: combinedPct(row) }));
+      meta = { asOf: data.asOf || "", matched: data.matched || 0, count: data.count || all.length };
+    }
+    applySourceUi();
+    render();
+  } catch (err) {
+    $("status").textContent = err.message || "Could not load week data.";
+    console.error(err);
+  }
+}
+
+boot();

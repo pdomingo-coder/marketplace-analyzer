@@ -924,6 +924,10 @@ input, select {
   grid-template-columns: 3rem minmax(0, 1fr) 6.5rem 9.5rem 5rem 5.5rem 7rem;
 }
 
+.movers-row--jira {
+  grid-template-columns: 3rem minmax(0, 1fr) 6.5rem 9.5rem;
+}
+
 .brief { padding-bottom: 3rem; }
 .brief h1 { max-width: 36rem; }
 
@@ -1068,6 +1072,7 @@ input, select {
   .bar { grid-template-columns: minmax(0, 1fr) auto; }
   .bar-track { grid-column: 1 / -1; }
   .row, .row-head, .movers-row { grid-template-columns: 2rem minmax(0, 1fr) 5.5rem; }
+  .movers-row--jira { grid-template-columns: 2rem minmax(0, 1fr) 5rem 7.5rem; }
   .cs-row { grid-template-columns: minmax(0, 1fr) 4.5rem 5.5rem; }
   .feat-row { grid-template-columns: minmax(0, 1fr); }
   .hide-sm { display: none !important; }
