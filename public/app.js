@@ -369,6 +369,38 @@ function growthLabel(row) {
   };
 }
 
+function renderGrowthChart(rows) {
+  const bars = $("growth-bars");
+  const label = $("growth-chart-label");
+  bars.innerHTML = "";
+  const chart = (rows || []).filter((row) => (row.delta || 0) > 0);
+  if (!chart.length) {
+    label.hidden = true;
+    return;
+  }
+  label.hidden = false;
+  label.textContent =
+    state.source === "jira"
+      ? "Who added the most installs since the last snapshot"
+      : "Who added the most users this week";
+  const max = Math.max(1, ...chart.map((row) => Number(row.delta) || 0));
+  for (const row of chart) {
+    const a = document.createElement("a");
+    a.className = "bar";
+    a.href = row.url || "#";
+    a.target = "_blank";
+    a.rel = "noopener";
+    const width = Math.max(6, ((Number(row.delta) || 0) / max) * 100);
+    const pct = row.pct == null ? "" : ` · ${row.pct > 0 ? "+" : ""}${(row.pct * 100).toFixed(1)}%`;
+    a.innerHTML = `
+      <span class="bar-name">${escapeHtml(row.name)}</span>
+      <span class="bar-track"><span class="bar-fill" style="width:${width}%"></span></span>
+      <span class="bar-stat">+${fmt(row.delta)}${pct}</span>
+    `;
+    bars.append(a);
+  }
+}
+
 function renderGrowth(data) {
   const box = $("growth");
   const list = $("growth-list");
@@ -377,8 +409,9 @@ function renderGrowth(data) {
   $("growth-toggle").textContent =
     data?.title ||
     (state.source === "jira"
-      ? "Installs vs last snapshot · top 100"
+      ? "Week growth vs last snapshot"
       : "Users this week vs last week · top 100");
+  renderGrowthChart(data?.chart || (state.source === "jira" ? data?.rows?.slice(0, 12) : []));
   if (!data?.rows?.length) {
     $("growth-meta").textContent = data?.message || "No growth data for this view.";
     return;
@@ -419,7 +452,7 @@ async function loadGrowth() {
   box.hidden = false;
   $("growth-toggle").textContent =
     state.source === "jira"
-      ? "Installs vs last snapshot · top 100"
+      ? "Week growth vs last snapshot"
       : "Users this week vs last week · top 100";
   $("growth-meta").textContent =
     state.source === "jira" ? "Reading last snapshot…" : "Reading last week’s users…";
@@ -856,5 +889,17 @@ function debounce(fn, ms) {
   };
 }
 
+if (new URLSearchParams(location.search).get("source") === "jira") {
+  state.source = "jira";
+  state.itemCategory = "";
+  state.minReviews = 0;
+}
+
 bind();
+if (state.source === "jira") {
+  $("type-field").hidden = true;
+  $("min-reviews").value = "0";
+  $("src-chrome").setAttribute("aria-pressed", "false");
+  $("src-jira").setAttribute("aria-pressed", "true");
+}
 loadAll();

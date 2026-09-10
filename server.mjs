@@ -441,18 +441,15 @@ function jiraGrowth(params) {
            ON s.source = l.source
           AND s.listing_id = l.listing_id
           AND s.captured_at = ?
-         WHERE ${where}
-         ORDER BY l.demand DESC
-         LIMIT 100`
+         WHERE ${where}`
       )
       .all(from, ...args);
-    const rows = raw.map((row, i) => {
+    const mapped = raw.map((row) => {
       const users = Number(row.demand) || 0;
       const weekAgo = row.week_ago == null ? null : Number(row.week_ago) || 0;
       const delta = weekAgo == null ? null : users - weekAgo;
       const pct = weekAgo ? delta / weekAgo : weekAgo === 0 && delta ? null : delta === 0 ? 0 : null;
       return {
-        rank: i + 1,
         listing_id: row.listing_id,
         name: row.name,
         url: row.url,
@@ -474,12 +471,13 @@ function jiraGrowth(params) {
       };
     });
     const days = Math.abs(dayDiff(today, from));
-    const anyDelta = rows.some((row) => row.delta);
+    const anyDelta = mapped.some((row) => row.delta);
     if (from === today && !anyDelta) {
       return {
         ready: true,
         source: "jira",
         rows: [],
+        chart: [],
         from,
         to: today,
         days: 0,
@@ -487,16 +485,21 @@ function jiraGrowth(params) {
         message: `Baseline saved ${from}. Next week run npm run ingest:jira, then refresh this page.`,
       };
     }
+    const grew = mapped.filter((row) => (row.delta || 0) > 0).sort((a, b) => b.delta - a.delta);
+    const rows = grew.slice(0, 100).map((row, i) => ({ ...row, rank: i + 1 }));
+    const chart = grew.slice(0, 12);
     const span = days === 1 ? "1 day" : `${days} days`;
     return {
       ready: true,
       source: "jira",
       rows,
+      chart,
       from,
       to: today,
       days,
-      title: `Installs vs ${from} · top 100`,
-      message: `Top ${rows.length} by installs in this view. Compared with the ${from} snapshot (${span}).`,
+      grew: grew.length,
+      title: `Week growth vs ${from} · top by installs added`,
+      message: `Compared with ${from} (${span}). ${grew.length.toLocaleString()} apps added installs. Chart is the 12 that added the most sites.`,
     };
   });
 }

@@ -114,3 +114,4 @@ if (snap.added) {
   console.log(`Kept the existing ${snap.date} baseline. New installs are in the live list for comparison.`);
 }
 db.close();
+import("./export-jira-growth.mjs").catch(() => {});

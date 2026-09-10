@@ -617,6 +617,19 @@ input, select {
   color: var(--color-ink-2);
 }
 
+.growth-chart-label {
+  margin: 0;
+  padding: 0 0.8rem 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.growth-bars {
+  max-height: 22rem;
+  padding: 0 0.55rem 0.65rem;
+}
+
 .growth-list {
   list-style: none;
   margin: 0;

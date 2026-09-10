@@ -1,0 +1,1131 @@
+{
+  "asOf": "2026-09-10",
+  "from": "2026-09-02",
+  "to": "2026-09-10",
+  "days": 8,
+  "grew": 797,
+  "chart": [
+    {
+      "id": "com.atlassian.plugins.cloud.connect.cloud-connect-companion",
+      "name": "Cloud companion",
+      "url": "https://marketplace.atlassian.com/apps/1234907/cloud-companion?tab=overview",
+      "category": "Admin tools",
+      "users": 4148,
+      "weekAgo": 3134,
+      "delta": 1014,
+      "pct": 0.32354818123803447
+    },
+    {
+      "id": "com.atlassian.agent.claude.for.jira",
+      "name": "Claude Agent for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1150553788/claude-agent-for-jira?tab=overview",
+      "category": "",
+      "users": 6300,
+      "weekAgo": 5301,
+      "delta": 999,
+      "pct": 0.18845500848896435
+    },
+    {
+      "id": "com.anysphere.jira.plugins.cursor",
+      "name": "Cursor",
+      "url": "https://marketplace.atlassian.com/apps/3903220956/cursor?tab=overview",
+      "category": "",
+      "users": 2911,
+      "weekAgo": 2658,
+      "delta": 253,
+      "pct": 0.09518434913468773
+    },
+    {
+      "id": "com.github.copilot",
+      "name": "GitHub Copilot for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1582455624/github-copilot-for-jira?tab=overview",
+      "category": "",
+      "users": 2759,
+      "weekAgo": 2538,
+      "delta": 221,
+      "pct": 0.08707643814026793
+    },
+    {
+      "id": "com.qotilabs.jira.rich-filters-plugin",
+      "name": "Rich Filters for Jira Dashboards",
+      "url": "https://marketplace.atlassian.com/apps/1214789/rich-filters-for-jira-dashboards?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 9480,
+      "weekAgo": 9440,
+      "delta": 40,
+      "pct": 0.00423728813559322
+    },
+    {
+      "id": "com.axt.jira.plugins.sprintsuppermanager",
+      "name": "Sprint Super Manager for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/2612228981/sprint-super-manager-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 79,
+      "weekAgo": 43,
+      "delta": 36,
+      "pct": 0.8372093023255814
+    },
+    {
+      "id": "io.bloompeak.status-time-free",
+      "name": "Status Time Reports Free - Time in Status",
+      "url": "https://marketplace.atlassian.com/apps/1222051/status-time-reports-free-time-in-status?tab=overview",
+      "category": "Time tracking",
+      "users": 10586,
+      "weekAgo": 10552,
+      "delta": 34,
+      "pct": 0.0032221379833206974
+    },
+    {
+      "id": "se.findout.plugin.dependency-map",
+      "name": "Dependency Map for Jira (link viewer)",
+      "url": "https://marketplace.atlassian.com/apps/1218391/dependency-map-for-jira-link-viewer?tab=overview",
+      "category": "Workflow",
+      "users": 328,
+      "weekAgo": 294,
+      "delta": 34,
+      "pct": 0.11564625850340136
+    },
+    {
+      "id": "io.gitprotect.jira-v1",
+      "name": "GitProtect.io for Jira (Backup, Restore, Data Management)",
+      "url": "https://marketplace.atlassian.com/apps/1228719/gitprotect-io-for-jira-backup-restore-data-management?tab=overview",
+      "category": "Admin tools",
+      "users": 410,
+      "weekAgo": 376,
+      "delta": 34,
+      "pct": 0.09042553191489362
+    },
+    {
+      "id": "laya",
+      "name": "Laya Board: Custom Boards & External Share for Jira",
+      "url": "https://marketplace.atlassian.com/apps/3402280988/laya-board-custom-boards-external-share-for-jira?tab=overview",
+      "category": "",
+      "users": 271,
+      "weekAgo": 241,
+      "delta": 30,
+      "pct": 0.12448132780082988
+    },
+    {
+      "id": "com.notion.ai.jira.connector",
+      "name": "Notion AI",
+      "url": "https://marketplace.atlassian.com/apps/1235932/notion-ai?tab=overview",
+      "category": "",
+      "users": 2810,
+      "weekAgo": 2783,
+      "delta": 27,
+      "pct": 0.009701760689902982
+    },
+    {
+      "id": "azure-devops-for-jira",
+      "name": "Azure DevOps for Jira (Official)",
+      "url": "https://marketplace.atlassian.com/apps/1232793/azure-devops-for-jira-official?tab=overview",
+      "category": "Integrations",
+      "users": 6769,
+      "weekAgo": 6745,
+      "delta": 24,
+      "pct": 0.003558191252779837
+    }
+  ],
+  "rows": [
+    {
+      "id": "com.atlassian.plugins.cloud.connect.cloud-connect-companion",
+      "name": "Cloud companion",
+      "url": "https://marketplace.atlassian.com/apps/1234907/cloud-companion?tab=overview",
+      "category": "Admin tools",
+      "users": 4148,
+      "weekAgo": 3134,
+      "delta": 1014,
+      "pct": 0.32354818123803447
+    },
+    {
+      "id": "com.atlassian.agent.claude.for.jira",
+      "name": "Claude Agent for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1150553788/claude-agent-for-jira?tab=overview",
+      "category": "",
+      "users": 6300,
+      "weekAgo": 5301,
+      "delta": 999,
+      "pct": 0.18845500848896435
+    },
+    {
+      "id": "com.anysphere.jira.plugins.cursor",
+      "name": "Cursor",
+      "url": "https://marketplace.atlassian.com/apps/3903220956/cursor?tab=overview",
+      "category": "",
+      "users": 2911,
+      "weekAgo": 2658,
+      "delta": 253,
+      "pct": 0.09518434913468773
+    },
+    {
+      "id": "com.github.copilot",
+      "name": "GitHub Copilot for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1582455624/github-copilot-for-jira?tab=overview",
+      "category": "",
+      "users": 2759,
+      "weekAgo": 2538,
+      "delta": 221,
+      "pct": 0.08707643814026793
+    },
+    {
+      "id": "com.qotilabs.jira.rich-filters-plugin",
+      "name": "Rich Filters for Jira Dashboards",
+      "url": "https://marketplace.atlassian.com/apps/1214789/rich-filters-for-jira-dashboards?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 9480,
+      "weekAgo": 9440,
+      "delta": 40,
+      "pct": 0.00423728813559322
+    },
+    {
+      "id": "com.axt.jira.plugins.sprintsuppermanager",
+      "name": "Sprint Super Manager for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/2612228981/sprint-super-manager-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 79,
+      "weekAgo": 43,
+      "delta": 36,
+      "pct": 0.8372093023255814
+    },
+    {
+      "id": "io.bloompeak.status-time-free",
+      "name": "Status Time Reports Free - Time in Status",
+      "url": "https://marketplace.atlassian.com/apps/1222051/status-time-reports-free-time-in-status?tab=overview",
+      "category": "Time tracking",
+      "users": 10586,
+      "weekAgo": 10552,
+      "delta": 34,
+      "pct": 0.0032221379833206974
+    },
+    {
+      "id": "se.findout.plugin.dependency-map",
+      "name": "Dependency Map for Jira (link viewer)",
+      "url": "https://marketplace.atlassian.com/apps/1218391/dependency-map-for-jira-link-viewer?tab=overview",
+      "category": "Workflow",
+      "users": 328,
+      "weekAgo": 294,
+      "delta": 34,
+      "pct": 0.11564625850340136
+    },
+    {
+      "id": "io.gitprotect.jira-v1",
+      "name": "GitProtect.io for Jira (Backup, Restore, Data Management)",
+      "url": "https://marketplace.atlassian.com/apps/1228719/gitprotect-io-for-jira-backup-restore-data-management?tab=overview",
+      "category": "Admin tools",
+      "users": 410,
+      "weekAgo": 376,
+      "delta": 34,
+      "pct": 0.09042553191489362
+    },
+    {
+      "id": "laya",
+      "name": "Laya Board: Custom Boards & External Share for Jira",
+      "url": "https://marketplace.atlassian.com/apps/3402280988/laya-board-custom-boards-external-share-for-jira?tab=overview",
+      "category": "",
+      "users": 271,
+      "weekAgo": 241,
+      "delta": 30,
+      "pct": 0.12448132780082988
+    },
+    {
+      "id": "com.notion.ai.jira.connector",
+      "name": "Notion AI",
+      "url": "https://marketplace.atlassian.com/apps/1235932/notion-ai?tab=overview",
+      "category": "",
+      "users": 2810,
+      "weekAgo": 2783,
+      "delta": 27,
+      "pct": 0.009701760689902982
+    },
+    {
+      "id": "azure-devops-for-jira",
+      "name": "Azure DevOps for Jira (Official)",
+      "url": "https://marketplace.atlassian.com/apps/1232793/azure-devops-for-jira-official?tab=overview",
+      "category": "Integrations",
+      "users": 6769,
+      "weekAgo": 6745,
+      "delta": 24,
+      "pct": 0.003558191252779837
+    },
+    {
+      "id": "sprintretro",
+      "name": "SprintRetro – Free Retrospective & Metrics Suite",
+      "url": "https://marketplace.atlassian.com/apps/187209184/sprintretro-free-retrospective-metrics-suite?tab=overview",
+      "category": "Time tracking",
+      "users": 975,
+      "weekAgo": 951,
+      "delta": 24,
+      "pct": 0.025236593059936908
+    },
+    {
+      "id": "sprintpoker-free",
+      "name": "SprintPoker – Free Planning Poker & Async Estimation",
+      "url": "https://marketplace.atlassian.com/apps/3780102417/sprintpoker-free-planning-poker-async-estimation?tab=overview",
+      "category": "",
+      "users": 588,
+      "weekAgo": 564,
+      "delta": 24,
+      "pct": 0.0425531914893617
+    },
+    {
+      "id": "jira-mermaid",
+      "name": "Mermaid Charts & Diagrams for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1224537/mermaid-charts-diagrams-for-jira?tab=overview",
+      "category": "Charts & diagramming",
+      "users": 564,
+      "weekAgo": 541,
+      "delta": 23,
+      "pct": 0.04251386321626617
+    },
+    {
+      "id": "sprintretrospective",
+      "name": "SprintRetro Pro – Retrospective & Metrics Suite",
+      "url": "https://marketplace.atlassian.com/apps/2903137599/sprintretro-pro-retrospective-metrics-suite?tab=overview",
+      "category": "",
+      "users": 580,
+      "weekAgo": 558,
+      "delta": 22,
+      "pct": 0.03942652329749104
+    },
+    {
+      "id": "com.javahollic.jira.jemh-ui",
+      "name": "Enterprise Mail Handler for Jira Cloud (JEMHC) and DC",
+      "url": "https://marketplace.atlassian.com/apps/4832/enterprise-mail-handler-for-jira-cloud-jemhc-and-dc?tab=overview",
+      "category": "Custom fields",
+      "users": 1704,
+      "weekAgo": 1683,
+      "delta": 21,
+      "pct": 0.012477718360071301
+    },
+    {
+      "id": "LayaWorkflowOS",
+      "name": "Laya WorkflowOS – AI Automation for Jira",
+      "url": "https://marketplace.atlassian.com/apps/3684126567/laya-workflowos-ai-automation-for-jira?tab=overview",
+      "category": "",
+      "users": 551,
+      "weekAgo": 530,
+      "delta": 21,
+      "pct": 0.03962264150943396
+    },
+    {
+      "id": "sprintpoker",
+      "name": "SprintPoker – Planning Poker & Async Estimation",
+      "url": "https://marketplace.atlassian.com/apps/1143291390/sprintpoker-planning-poker-async-estimation?tab=overview",
+      "category": "",
+      "users": 645,
+      "weekAgo": 626,
+      "delta": 19,
+      "pct": 0.03035143769968051
+    },
+    {
+      "id": "LayaExportStudio",
+      "name": "Laya Export Studio for Jira and Confluence",
+      "url": "https://marketplace.atlassian.com/apps/4076194710/laya-export-studio-for-jira-and-confluence?tab=overview",
+      "category": "",
+      "users": 503,
+      "weekAgo": 484,
+      "delta": 19,
+      "pct": 0.03925619834710744
+    },
+    {
+      "id": "issue-description-summary",
+      "name": "ChatGPT for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1231153/chatgpt-for-jira?tab=overview",
+      "category": "Custom fields",
+      "users": 299,
+      "weekAgo": 281,
+      "delta": 18,
+      "pct": 0.06405693950177936
+    },
+    {
+      "id": "qase.jira.cloud",
+      "name": "Qase for Jira Test Management",
+      "url": "https://marketplace.atlassian.com/apps/1226612/qase-for-jira-test-management?tab=overview",
+      "category": "Reports",
+      "users": 2847,
+      "weekAgo": 2830,
+      "delta": 17,
+      "pct": 0.006007067137809187
+    },
+    {
+      "id": "io.soteri.jira.plugins.security",
+      "name": "Security for Jira PII & Secret Scanner by Soteri",
+      "url": "https://marketplace.atlassian.com/apps/1229376/security-for-jira-pii-secret-scanner-by-soteri?tab=overview",
+      "category": "Admin tools",
+      "users": 126,
+      "weekAgo": 109,
+      "delta": 17,
+      "pct": 0.1559633027522936
+    },
+    {
+      "id": "org.techtime.jira.plugins.usermanagement",
+      "name": "User Management for Jira (bulk & timed inactive users)",
+      "url": "https://marketplace.atlassian.com/apps/1215285/user-management-for-jira-bulk-timed-inactive-users?tab=overview",
+      "category": "Admin tools",
+      "users": 887,
+      "weekAgo": 870,
+      "delta": 17,
+      "pct": 0.01954022988505747
+    },
+    {
+      "id": "com.metainf.jira.plugin.emailissue",
+      "name": "Email This Issue",
+      "url": "https://marketplace.atlassian.com/apps/4977/email-this-issue?tab=overview",
+      "category": "Workflow",
+      "users": 5676,
+      "weekAgo": 5660,
+      "delta": 16,
+      "pct": 0.0028268551236749115
+    },
+    {
+      "id": "agility-poker-planning",
+      "name": "Planning Poker Agility - FREE Estimation & Sizing for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1233038/planning-poker-agility-free-estimation-sizing-for-jira?tab=overview",
+      "category": "Time tracking",
+      "users": 3259,
+      "weekAgo": 3243,
+      "delta": 16,
+      "pct": 0.004933703361085414
+    },
+    {
+      "id": "blueleapapps.simple-gantt",
+      "name": "Simple Gantt - Gantt Chart for Jira",
+      "url": "https://marketplace.atlassian.com/apps/618384882/simple-gantt-gantt-chart-for-jira?tab=overview",
+      "category": "",
+      "users": 98,
+      "weekAgo": 82,
+      "delta": 16,
+      "pct": 0.1951219512195122
+    },
+    {
+      "id": "aptis.plugins.epicSumUp",
+      "name": "ESU - Sum Up KPI & Budget Reporting Project Epic Overview",
+      "url": "https://marketplace.atlassian.com/apps/1213091/esu-sum-up-kpi-budget-reporting-project-epic-overview?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 1771,
+      "weekAgo": 1756,
+      "delta": 15,
+      "pct": 0.008542141230068337
+    },
+    {
+      "id": "com.valiantys.jira.plugins.SQLFeed",
+      "name": "Elements Connect (external data fields for Jira)",
+      "url": "https://marketplace.atlassian.com/apps/23337/elements-connect-external-data-fields-for-jira?tab=overview",
+      "category": "Custom fields",
+      "users": 2673,
+      "weekAgo": 2658,
+      "delta": 15,
+      "pct": 0.0056433408577878106
+    },
+    {
+      "id": "com.brizoit.companycalendar",
+      "name": "Company Calendar for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1217938/company-calendar-for-jira?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 587,
+      "weekAgo": 572,
+      "delta": 15,
+      "pct": 0.026223776223776224
+    },
+    {
+      "id": "com.greffon.folio",
+      "name": "Budgets - Jira Project Budget Management | Tempo",
+      "url": "https://marketplace.atlassian.com/apps/1211259/budgets-jira-project-budget-management-tempo?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 712,
+      "weekAgo": 697,
+      "delta": 15,
+      "pct": 0.021520803443328552
+    },
+    {
+      "id": "issue.templates.picker.custom.field",
+      "name": "Issue Templates Picker - Summary, Description and more",
+      "url": "https://marketplace.atlassian.com/apps/1235669/issue-templates-picker-summary-description-and-more?tab=overview",
+      "category": "Custom fields",
+      "users": 659,
+      "weekAgo": 644,
+      "delta": 15,
+      "pct": 0.023291925465838508
+    },
+    {
+      "id": "com.okapya.jira.connectors",
+      "name": "Connectors for Jira (Microsoft & Google)",
+      "url": "https://marketplace.atlassian.com/apps/1233908/connectors-for-jira-microsoft-google?tab=overview",
+      "category": "Admin tools",
+      "users": 256,
+      "weekAgo": 242,
+      "delta": 14,
+      "pct": 0.05785123966942149
+    },
+    {
+      "id": "com.deviniti.atlassian.apps.issue-sync-lite",
+      "name": "Issue Sync Pro",
+      "url": "https://marketplace.atlassian.com/apps/1229958/issue-sync-pro?tab=overview",
+      "category": "Admin tools",
+      "users": 337,
+      "weekAgo": 323,
+      "delta": 14,
+      "pct": 0.043343653250773995
+    },
+    {
+      "id": "com.akelesconsulting.jira.plugins.GaugeGadget",
+      "name": "Gauge Gadget",
+      "url": "https://marketplace.atlassian.com/apps/1211976/gauge-gadget?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 1111,
+      "weekAgo": 1098,
+      "delta": 13,
+      "pct": 0.011839708561020037
+    },
+    {
+      "id": "clockify-v2",
+      "name": "Clockify: Time Tracking & Timesheet 2-Way Sync",
+      "url": "https://marketplace.atlassian.com/apps/879475324/clockify-time-tracking-timesheet-2-way-sync?tab=overview",
+      "category": "Time tracking",
+      "users": 1062,
+      "weekAgo": 1049,
+      "delta": 13,
+      "pct": 0.012392755004766444
+    },
+    {
+      "id": "com.apanasevich.jira-jigit-plugin",
+      "name": "Jigit - GitHub, GitLab, Gerrit integration for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1217129/jigit-github-gitlab-gerrit-integration-for-jira?tab=overview",
+      "category": "Repository connectors",
+      "users": 609,
+      "weekAgo": 596,
+      "delta": 13,
+      "pct": 0.02181208053691275
+    },
+    {
+      "id": "de.resolution.apitokenauth.jira",
+      "name": "API Token Authentication for Jira expand connection security",
+      "url": "https://marketplace.atlassian.com/apps/1221586/api-token-authentication-for-jira-expand-connection-security?tab=overview",
+      "category": "Admin tools",
+      "users": 385,
+      "weekAgo": 372,
+      "delta": 13,
+      "pct": 0.03494623655913978
+    },
+    {
+      "id": "net.savignano.s-notify.jira.gui",
+      "name": "S/Notify Email Encryption for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1218251/s-notify-email-encryption-for-jira?tab=overview",
+      "category": "Email",
+      "users": 75,
+      "weekAgo": 62,
+      "delta": 13,
+      "pct": 0.20967741935483872
+    },
+    {
+      "id": "com.qotilabs.jira.rich-filters-service-desk-dashboards",
+      "name": "Rich Filters::Service Management Dashboards",
+      "url": "https://marketplace.atlassian.com/apps/1218675/rich-filters-service-management-dashboards?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 363,
+      "weekAgo": 350,
+      "delta": 13,
+      "pct": 0.037142857142857144
+    },
+    {
+      "id": "com.achlys.FieldGovernanceForJira",
+      "name": "Field Governance - Role Based Field Visibility for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2822852139/field-governance-role-based-field-visibility-for-jira?tab=overview",
+      "category": "",
+      "users": 78,
+      "weekAgo": 65,
+      "delta": 13,
+      "pct": 0.2
+    },
+    {
+      "id": "io.caskcode.strategyhub",
+      "name": "Strategy Hub: Free OKRs, Goals, KPIs & Strategy Planning",
+      "url": "https://marketplace.atlassian.com/apps/4032874960/strategy-hub-free-okrs-goals-kpis-strategy-planning?tab=overview",
+      "category": "",
+      "users": 86,
+      "weekAgo": 73,
+      "delta": 13,
+      "pct": 0.1780821917808219
+    },
+    {
+      "id": "net.solutions.plugins.jiracomponentwatcher",
+      "name": "Component Watcher for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1229791/component-watcher-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 145,
+      "weekAgo": 132,
+      "delta": 13,
+      "pct": 0.09848484848484848
+    },
+    {
+      "id": "com.atlassian.jira.assets.microsoftentraidintegration",
+      "name": "JSM Assets - Microsoft Entra ID (Azure AD) Beta Integration",
+      "url": "https://marketplace.atlassian.com/apps/1232506/jsm-assets-microsoft-entra-id-azure-ad-beta-integration?tab=overview",
+      "category": "",
+      "users": 1481,
+      "weekAgo": 1469,
+      "delta": 12,
+      "pct": 0.008168822328114363
+    },
+    {
+      "id": "com.atlassian.plugins.panopticon",
+      "name": "Centralized license visibility",
+      "url": "https://marketplace.atlassian.com/apps/1220745/centralized-license-visibility?tab=overview",
+      "category": "Admin tools",
+      "users": 900,
+      "weekAgo": 888,
+      "delta": 12,
+      "pct": 0.013513513513513514
+    },
+    {
+      "id": "sla-time-and-report",
+      "name": "SLA Time and Report for Jira (SLA Management & Compliance)",
+      "url": "https://marketplace.atlassian.com/apps/1220741/sla-time-and-report-for-jira-sla-management-compliance?tab=overview",
+      "category": "Time tracking",
+      "users": 755,
+      "weekAgo": 743,
+      "delta": 12,
+      "pct": 0.016150740242261104
+    },
+    {
+      "id": "com.wittified.jira.project-creator",
+      "name": "Delegated Project Creator for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1211157/delegated-project-creator-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 524,
+      "weekAgo": 512,
+      "delta": 12,
+      "pct": 0.0234375
+    },
+    {
+      "id": "com.caelor.jira.cloud.ail",
+      "name": "Linksy - Advanced Issue Linking for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1230161/linksy-advanced-issue-linking-for-jira?tab=overview",
+      "category": "Workflow",
+      "users": 130,
+      "weekAgo": 118,
+      "delta": 12,
+      "pct": 0.1016949152542373
+    },
+    {
+      "id": "com.akelesconsulting.jira.plugins.calendar-heatmap",
+      "name": "Calendar Heatmap Gadget",
+      "url": "https://marketplace.atlassian.com/apps/1215764/calendar-heatmap-gadget?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 389,
+      "weekAgo": 377,
+      "delta": 12,
+      "pct": 0.03183023872679045
+    },
+    {
+      "id": "io.helloclerk.invoices",
+      "name": "Clerk Invoices - Billing, Invoicing & Time Reports for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1221332/clerk-invoices-billing-invoicing-time-reports-for-jira?tab=overview",
+      "category": "Time tracking",
+      "users": 388,
+      "weekAgo": 376,
+      "delta": 12,
+      "pct": 0.031914893617021274
+    },
+    {
+      "id": "com.incidentio.incidentio",
+      "name": "incident.io",
+      "url": "https://marketplace.atlassian.com/apps/1233901/incident-io?tab=overview",
+      "category": "",
+      "users": 1072,
+      "weekAgo": 1060,
+      "delta": 12,
+      "pct": 0.011320754716981131
+    },
+    {
+      "id": "com.simple-reports.gantt",
+      "name": "Simple Gantt & Roadmap Timeline Dashboard Gadget for Jira",
+      "url": "https://marketplace.atlassian.com/apps/3747688267/simple-gantt-roadmap-timeline-dashboard-gadget-for-jira?tab=overview",
+      "category": "",
+      "users": 245,
+      "weekAgo": 233,
+      "delta": 12,
+      "pct": 0.05150214592274678
+    },
+    {
+      "id": "com.browserstack.www.integrations.tcm-jira-app-pva",
+      "name": "Browserstack Test Management For Jira",
+      "url": "https://marketplace.atlassian.com/apps/1741353933/browserstack-test-management-for-jira?tab=overview",
+      "category": "",
+      "users": 130,
+      "weekAgo": 118,
+      "delta": 12,
+      "pct": 0.1016949152542373
+    },
+    {
+      "id": "com.akeles.jira.parc",
+      "name": "Project Access Review for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1238098/project-access-review-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 39,
+      "weekAgo": 27,
+      "delta": 12,
+      "pct": 0.4444444444444444
+    },
+    {
+      "id": "ru.andreymarkelov.atlas.plugins.prom-jira-exporter",
+      "name": "Prometheus Exporter PRO for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1217960/prometheus-exporter-pro-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 406,
+      "weekAgo": 395,
+      "delta": 11,
+      "pct": 0.027848101265822784
+    },
+    {
+      "id": "de.actonic.tm",
+      "name": "Timesheet Builder: Time Tracking & Worklog Reports for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1227537/timesheet-builder-time-tracking-worklog-reports-for-jira?tab=overview",
+      "category": "Time tracking",
+      "users": 202,
+      "weekAgo": 191,
+      "delta": 11,
+      "pct": 0.05759162303664921
+    },
+    {
+      "id": "de.accxia.jira.addon.IUM.IntelligentUserManager",
+      "name": "Intelligent User Manager (IUM) for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1225449/intelligent-user-manager-ium-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 71,
+      "weekAgo": 60,
+      "delta": 11,
+      "pct": 0.18333333333333332
+    },
+    {
+      "id": "com.akeles.jira.dac",
+      "name": "Dashboard Assistant for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1237524/dashboard-assistant-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 45,
+      "weekAgo": 34,
+      "delta": 11,
+      "pct": 0.3235294117647059
+    },
+    {
+      "id": "com.simple-reports.metrics",
+      "name": "Free JQL Filter Counter & KPI Dashboard Gadget for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2388614715/free-jql-filter-counter-kpi-dashboard-gadget-for-jira?tab=overview",
+      "category": "",
+      "users": 167,
+      "weekAgo": 156,
+      "delta": 11,
+      "pct": 0.07051282051282051
+    },
+    {
+      "id": "rich-text-gadget",
+      "name": "Rich Text Gadget for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1214632/rich-text-gadget-for-jira?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 7456,
+      "weekAgo": 7446,
+      "delta": 10,
+      "pct": 0.0013430029546065002
+    },
+    {
+      "id": "com.devsamurai.plugin.jira.story-mapping",
+      "name": "Agile User Story Map, Portfolio Roadmaps & Persona for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1222309/agile-user-story-map-portfolio-roadmaps-persona-for-jira?tab=overview",
+      "category": "Workflow",
+      "users": 2063,
+      "weekAgo": 2053,
+      "delta": 10,
+      "pct": 0.004870920603994155
+    },
+    {
+      "id": "com.codecanvas.glass",
+      "name": "Glass Project Documentation for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1219628/glass-project-documentation-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 175,
+      "weekAgo": 165,
+      "delta": 10,
+      "pct": 0.06060606060606061
+    },
+    {
+      "id": "com.riadalabs.jira.plugins.insight.insight-atlassian-environments",
+      "name": "Assets - Jira & Bitbucket Integration",
+      "url": "https://marketplace.atlassian.com/apps/1217750/assets-jira-bitbucket-integration?tab=overview",
+      "category": "Admin tools",
+      "users": 398,
+      "weekAgo": 388,
+      "delta": 10,
+      "pct": 0.02577319587628866
+    },
+    {
+      "id": "com.go2group.jira.plugin.crm",
+      "name": "CRM Salesforce Integration for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1220331/crm-salesforce-integration-for-jira?tab=overview",
+      "category": "Custom fields",
+      "users": 197,
+      "weekAgo": 187,
+      "delta": 10,
+      "pct": 0.053475935828877004
+    },
+    {
+      "id": "com.itlab.jira.plugins.extender",
+      "name": "Extender for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1217643/extender-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 179,
+      "weekAgo": 169,
+      "delta": 10,
+      "pct": 0.05917159763313609
+    },
+    {
+      "id": "io.tempo.workforce-intelligence",
+      "name": "Workforce Intelligence by Tempo- AI Spend Management in Jira",
+      "url": "https://marketplace.atlassian.com/apps/1794508389/workforce-intelligence-by-tempo-ai-spend-management-in-jira?tab=overview",
+      "category": "",
+      "users": 28,
+      "weekAgo": 18,
+      "delta": 10,
+      "pct": 0.5555555555555556
+    },
+    {
+      "id": "com.applifare.apps.brpfj",
+      "name": "Backlog Refinement, Estimation & Priority Hub for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2090421270/backlog-refinement-estimation-priority-hub-for-jira?tab=overview",
+      "category": "",
+      "users": 48,
+      "weekAgo": 38,
+      "delta": 10,
+      "pct": 0.2631578947368421
+    },
+    {
+      "id": "com.alphaserve.powerbi-gadget",
+      "name": "Power BI Embed Reports for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2734197930/power-bi-embed-reports-for-jira?tab=overview",
+      "category": "",
+      "users": 227,
+      "weekAgo": 217,
+      "delta": 10,
+      "pct": 0.04608294930875576
+    },
+    {
+      "id": "com.akelesconsulting.jira.plugins.MultipleChartsGadget",
+      "name": "Multiple Filters Chart Gadgets (for Dashboards & Reports)",
+      "url": "https://marketplace.atlassian.com/apps/1214613/multiple-filters-chart-gadgets-for-dashboards-reports?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 820,
+      "weekAgo": 811,
+      "delta": 9,
+      "pct": 0.011097410604192354
+    },
+    {
+      "id": "com.intenso.jira.plugins.password-policy",
+      "name": "Advanced Password Policy for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1211254/advanced-password-policy-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 127,
+      "weekAgo": 118,
+      "delta": 9,
+      "pct": 0.07627118644067797
+    },
+    {
+      "id": "com.tse.jira.deactivateusers.plugin.jira-deactivate-users-plugin",
+      "name": "Manage Inactive Users for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1219207/manage-inactive-users-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 172,
+      "weekAgo": 163,
+      "delta": 9,
+      "pct": 0.05521472392638037
+    },
+    {
+      "id": "com.deviniti.atlassian.apps.sla-time-management",
+      "name": "SLA Time Management",
+      "url": "https://marketplace.atlassian.com/apps/1237787/sla-time-management?tab=overview",
+      "category": "",
+      "users": 202,
+      "weekAgo": 193,
+      "delta": 9,
+      "pct": 0.046632124352331605
+    },
+    {
+      "id": "com.akeles.jira.jfilec",
+      "name": "File Type Checker for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1238069/file-type-checker-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 47,
+      "weekAgo": 38,
+      "delta": 9,
+      "pct": 0.23684210526315788
+    },
+    {
+      "id": "com.tngtech.gadgets.jira-barchart-gadget-plugin",
+      "name": "Bar Charts for Jira",
+      "url": "https://marketplace.atlassian.com/apps/575163/bar-charts-for-jira?tab=overview",
+      "category": "Dashboard gadgets",
+      "users": 571,
+      "weekAgo": 563,
+      "delta": 8,
+      "pct": 0.014209591474245116
+    },
+    {
+      "id": "com.coresoftlabs.secure-fields.secure-fields",
+      "name": "Secure Fields - Data Security & Privacy - ROA Ready!",
+      "url": "https://marketplace.atlassian.com/apps/1212681/secure-fields-data-security-privacy-roa-ready?tab=overview",
+      "category": "Custom fields",
+      "users": 639,
+      "weekAgo": 631,
+      "delta": 8,
+      "pct": 0.012678288431061807
+    },
+    {
+      "id": "pdf-export-jira",
+      "name": "PDF Export for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1233073/pdf-export-for-jira?tab=overview",
+      "category": "Reports",
+      "users": 519,
+      "weekAgo": 511,
+      "delta": 8,
+      "pct": 0.015655577299412915
+    },
+    {
+      "id": "freshdesk",
+      "name": "Freshdesk by Freshworks",
+      "url": "https://marketplace.atlassian.com/apps/1236055/freshdesk-by-freshworks?tab=overview",
+      "category": "Email",
+      "users": 367,
+      "weekAgo": 359,
+      "delta": 8,
+      "pct": 0.022284122562674095
+    },
+    {
+      "id": "simple.jira.reminder",
+      "name": "Simple Reminder – Email Notifications",
+      "url": "https://marketplace.atlassian.com/apps/1232417/simple-reminder-email-notifications?tab=overview",
+      "category": "Tasks",
+      "users": 106,
+      "weekAgo": 98,
+      "delta": 8,
+      "pct": 0.08163265306122448
+    },
+    {
+      "id": "com.appfire.livefields",
+      "name": "Live Fields for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1235961/live-fields-for-jira-cloud?tab=overview",
+      "category": "Admin tools",
+      "users": 773,
+      "weekAgo": 765,
+      "delta": 8,
+      "pct": 0.01045751633986928
+    },
+    {
+      "id": "com.appbox.ai.response.templates",
+      "name": "Response Templates for Jira (Canned Responses) (Pro)",
+      "url": "https://marketplace.atlassian.com/apps/1228072/response-templates-for-jira-canned-responses-pro?tab=overview",
+      "category": "Workflow",
+      "users": 69,
+      "weekAgo": 61,
+      "delta": 8,
+      "pct": 0.13114754098360656
+    },
+    {
+      "id": "argon-powerful-jql",
+      "name": "JQL Argon - Powerful JQL Search for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2170466783/jql-argon-powerful-jql-search-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 123,
+      "weekAgo": 115,
+      "delta": 8,
+      "pct": 0.06956521739130435
+    },
+    {
+      "id": "elements.connect.helper.jira",
+      "name": "Elements Connect - helper for custom fields integration",
+      "url": "https://marketplace.atlassian.com/apps/1232142/elements-connect-helper-for-custom-fields-integration?tab=overview",
+      "category": "Custom fields",
+      "users": 746,
+      "weekAgo": 738,
+      "delta": 8,
+      "pct": 0.01084010840108401
+    },
+    {
+      "id": "com.google.agentspace.useridentityaccessor",
+      "name": "User Identity Accessor for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1238248/user-identity-accessor-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 418,
+      "weekAgo": 410,
+      "delta": 8,
+      "pct": 0.01951219512195122
+    },
+    {
+      "id": "com.pylon.jira.ticketingintegration",
+      "name": "Pylon Integration for Jira",
+      "url": "https://marketplace.atlassian.com/apps/2798240972/pylon-integration-for-jira?tab=overview",
+      "category": "Integrations",
+      "users": 154,
+      "weekAgo": 146,
+      "delta": 8,
+      "pct": 0.0547945205479452
+    },
+    {
+      "id": "com.addonexpertscenter.jira-sprint-planning-resources",
+      "name": "Sprint Capacity Planning & Tracking",
+      "url": "https://marketplace.atlassian.com/apps/1217495/sprint-capacity-planning-tracking?tab=overview",
+      "category": "Time tracking",
+      "users": 673,
+      "weekAgo": 666,
+      "delta": 7,
+      "pct": 0.010510510510510511
+    },
+    {
+      "id": "com.appbox.ai.checklist",
+      "name": "Checklist for Jira (Free)",
+      "url": "https://marketplace.atlassian.com/apps/1223660/checklist-for-jira-free?tab=overview",
+      "category": "Workflow",
+      "users": 2386,
+      "weekAgo": 2379,
+      "delta": 7,
+      "pct": 0.0029424127784783522
+    },
+    {
+      "id": "com.deniz.jira.versioning",
+      "name": "Software Configuration Management Toolkit",
+      "url": "https://marketplace.atlassian.com/apps/1211825/software-configuration-management-toolkit?tab=overview",
+      "category": "Admin tools",
+      "users": 340,
+      "weekAgo": 333,
+      "delta": 7,
+      "pct": 0.021021021021021023
+    },
+    {
+      "id": "com.brizoit.gantt",
+      "name": "Gantt Suite for Jira: project management & resource planning",
+      "url": "https://marketplace.atlassian.com/apps/1222150/gantt-suite-for-jira-project-management-resource-planning?tab=overview",
+      "category": "Time tracking",
+      "users": 1106,
+      "weekAgo": 1099,
+      "delta": 7,
+      "pct": 0.006369426751592357
+    },
+    {
+      "id": "com.qotilabs.jira.rich-filters-time-tracking-dashboards",
+      "name": "Rich Filters::Time Tracking Dashboards",
+      "url": "https://marketplace.atlassian.com/apps/1219709/rich-filters-time-tracking-dashboards?tab=overview",
+      "category": "Time tracking",
+      "users": 323,
+      "weekAgo": 316,
+      "delta": 7,
+      "pct": 0.022151898734177215
+    },
+    {
+      "id": "net.veniture.jira.cloud.trophies4j",
+      "name": "Trophies - Gamification for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1223472/trophies-gamification-for-jira?tab=overview",
+      "category": "Charts & diagramming",
+      "users": 236,
+      "weekAgo": 229,
+      "delta": 7,
+      "pct": 0.03056768558951965
+    },
+    {
+      "id": "kr.osci.apps.flex_jira",
+      "name": "Flexible User License - Auto User Management for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1222216/flexible-user-license-auto-user-management-for-jira?tab=overview",
+      "category": "Admin tools",
+      "users": 253,
+      "weekAgo": 246,
+      "delta": 7,
+      "pct": 0.028455284552845527
+    },
+    {
+      "id": "com.moy.jira.plugins.assetsgadgets",
+      "name": "Assets Gadgets for Jira & JSM (Dashboards, Portal view, AQL)",
+      "url": "https://marketplace.atlassian.com/apps/1238168/assets-gadgets-for-jira-jsm-dashboards-portal-view-aql?tab=overview",
+      "category": "",
+      "users": 53,
+      "weekAgo": 46,
+      "delta": 7,
+      "pct": 0.15217391304347827
+    },
+    {
+      "id": "solacein.time-history",
+      "name": "Time And History: Time in Status & Issue History for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1223358/time-and-history-time-in-status-issue-history-for-jira?tab=overview",
+      "category": "Time tracking",
+      "users": 21,
+      "weekAgo": 14,
+      "delta": 7,
+      "pct": 0.5
+    },
+    {
+      "id": "com.inuyasi.apps.jira.charts",
+      "name": "Charts - Reports & Graphs for Jira Dashboard",
+      "url": "https://marketplace.atlassian.com/apps/842672747/charts-reports-graphs-for-jira-dashboard?tab=overview",
+      "category": "",
+      "users": 325,
+      "weekAgo": 318,
+      "delta": 7,
+      "pct": 0.0220125786163522
+    },
+    {
+      "id": "com.atlassian.plugins.cloud.connect.portfolio-insights-companion",
+      "name": "Portfolio Insights for Jira Data Center",
+      "url": "https://marketplace.atlassian.com/apps/765534704/portfolio-insights-for-jira-data-center?tab=overview",
+      "category": "",
+      "users": 79,
+      "weekAgo": 72,
+      "delta": 7,
+      "pct": 0.09722222222222222
+    },
+    {
+      "id": "com.opusguard.plugins.jira.crmj.lite",
+      "name": "Content Retention Manager Lite for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1237739/content-retention-manager-lite-for-jira?tab=overview",
+      "category": "",
+      "users": 27,
+      "weekAgo": 20,
+      "delta": 7,
+      "pct": 0.35
+    },
+    {
+      "id": "jsd-status-page",
+      "name": "Statuspage for Jira Service Management",
+      "url": "https://marketplace.atlassian.com/apps/1216079/statuspage-for-jira-service-management?tab=overview",
+      "category": "IT & helpdesk",
+      "users": 3970,
+      "weekAgo": 3964,
+      "delta": 6,
+      "pct": 0.0015136226034308778
+    },
+    {
+      "id": "mermaid-chart-app-for-jira",
+      "name": "Mermaid for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1234810/mermaid-for-jira?tab=overview",
+      "category": "",
+      "users": 903,
+      "weekAgo": 897,
+      "delta": 6,
+      "pct": 0.006688963210702341
+    },
+    {
+      "id": "rw-smart-checklist-biz",
+      "name": "Smart Checklists for Jira",
+      "url": "https://marketplace.atlassian.com/apps/1216451/smart-checklists-for-jira?tab=overview",
+      "category": "Workflow",
+      "users": 4599,
+      "weekAgo": 4593,
+      "delta": 6,
+      "pct": 0.0013063357282821686
+    },
+    {
+      "id": "com.aws.jira.plugins.securityhubv2-jc",
+      "name": "AWS Security Hub for Jira Cloud",
+      "url": "https://marketplace.atlassian.com/apps/1238156/aws-security-hub-for-jira-cloud?tab=overview",
+      "category": "",
+      "users": 327,
+      "weekAgo": 321,
+      "delta": 6,
+      "pct": 0.018691588785046728
+    }
+  ]
+}
