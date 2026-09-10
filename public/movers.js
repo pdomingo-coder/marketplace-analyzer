@@ -79,6 +79,37 @@ function rate(users, delta) {
   return ago > 0 ? delta / ago : null;
 }
 
+function stretch(from, to) {
+  if (!(from > 0)) return null;
+  const r = (to - from) / from;
+  return Math.max(-1, Math.min(1, r));
+}
+
+function combinedPct(row) {
+  const now = Number(row.users) || 0;
+  const weekAgo = Math.max(0, now - (Number(row.wow) || 0));
+  const monthAgo = Math.max(0, now - (Number(row.month) || 0));
+  const q3Ago = Math.max(0, now - (Number(row.q3) || 0));
+  const parts = [
+    { w: 0.5, r: stretch(weekAgo, now) },
+    { w: 0.3, r: stretch(monthAgo, weekAgo) },
+    { w: 0.2, r: stretch(q3Ago, monthAgo) },
+  ].filter((p) => p.r != null);
+  const wsum = parts.reduce((sum, p) => sum + p.w, 0);
+  if (!wsum) return null;
+  return parts.reduce((sum, p) => sum + p.r * (p.w / wsum), 0);
+}
+
+function combinedLabel(pct) {
+  if (pct == null) return { text: "—", cls: "growth-flat" };
+  if (pct === 0) return { text: "No change", cls: "growth-flat" };
+  const sign = pct > 0 ? "+" : "";
+  return {
+    text: `${sign}${(pct * 100).toFixed(1)}%`,
+    cls: pct > 0 ? "growth-up" : "growth-down",
+  };
+}
+
 function lastWeek(row) {
   return row.users - row.wow;
 }
@@ -153,6 +184,12 @@ function sortRows(rows) {
     list.sort((a, b) => b.wow - a.wow);
   } else if (state.sort === "users") {
     list.sort((a, b) => b.users - a.users);
+  } else if (state.sort === "combined") {
+    list.sort((a, b) => {
+      const ap = a.combined == null ? -Infinity : a.combined;
+      const bp = b.combined == null ? -Infinity : b.combined;
+      return bp - ap || b.wow - a.wow;
+    });
   } else if (state.sort === "monthPct") {
     list.sort((a, b) => (rate(b.users, b.month) || -Infinity) - (rate(a.users, a.month) || -Infinity));
   } else if (state.sort === "created") {
@@ -325,6 +362,7 @@ function renderRows(rows) {
     <span class="num">Users</span>
     <span class="num">Week</span>
     <span class="num hide-sm">Month</span>
+    <span class="num hide-sm">Combined</span>
     <span class="hide-sm">Trend</span>
   `;
   list.append(head);
@@ -334,6 +372,7 @@ function renderRows(rows) {
     const g = pctLabel(row);
     const monthPct = rate(row.users, row.month);
     const month = monthPct == null ? "—" : `${row.month >= 0 ? "+" : ""}${(monthPct * 100).toFixed(1)}%`;
+    const combo = combinedLabel(row.combined);
     const age =
       row.ageDays == null
         ? ""
@@ -350,6 +389,7 @@ function renderRows(rows) {
       <span class="num">${fmt(row.users)}</span>
       <span class="num ${g.cls}">${escapeHtml(g.text)}</span>
       <span class="num hide-sm">${escapeHtml(month)}</span>
+      <span class="num hide-sm ${combo.cls}">${escapeHtml(combo.text)}</span>
       <span class="hide-sm">${spark(row)}</span>
     `;
     list.append(li);
@@ -488,6 +528,6 @@ const data = await fetch("data/movers.json").then((r) => {
   if (!r.ok) throw new Error("Missing movers.json. Run npm run ingest:movers");
   return r.json();
 });
-all = data.rows || [];
+all = (data.rows || []).map((row) => ({ ...row, combined: combinedPct(row) }));
 meta = { asOf: data.asOf || "", matched: data.matched || 0, count: data.count || all.length };
 render();
