@@ -293,6 +293,7 @@ function setSource(source) {
   if (source === "jira") url.searchParams.set("source", "jira");
   else url.searchParams.delete("source");
   history.replaceState({}, "", url);
+  applySourceUi();
   state.offset = 0;
   state.category = "";
   state.job = "";
@@ -411,16 +412,17 @@ async function loadList() {
   const gen = loadGen;
   $("status").textContent = "Loading…";
   try {
-    const data = useApi
-      ? await getJson(`/api/top?${queryString()}`)
-      : (() => {
-          const rows = matchedRows(shelfCache[state.source] || { rows: [] });
-          return {
-            ready: true,
-            rows: rows.slice(state.offset, state.offset + state.limit),
-            total: rows.length,
-          };
-        })();
+    let data;
+    if (useApi) {
+      data = await getJson(`api/top?${queryString()}`);
+    } else {
+      const rows = matchedRows(await shelfOf());
+      data = {
+        ready: true,
+        rows: rows.slice(state.offset, state.offset + state.limit),
+        total: rows.length,
+      };
+    }
     if (gen !== loadGen) return;
     renderRows(data);
   } catch (err) {
@@ -554,7 +556,7 @@ async function loadGrowth() {
     state.source === "jira" ? "Reading last snapshot…" : "Reading last week’s users…";
   $("growth-list").innerHTML = "";
   try {
-    const data = await getJson(`/api/growth?${queryString()}`, growthAbort.signal);
+    const data = await getJson(`api/growth?${queryString()}`, growthAbort.signal);
     if (gen !== loadGen) return;
     renderGrowth(data);
   } catch (err) {
@@ -573,7 +575,7 @@ async function loadMeta() {
         `${Number(chrome.total || chrome.rows?.length || 0).toLocaleString()} Chrome listings · ${Number(jira.total || jira.rows?.length || 0).toLocaleString()} Jira apps`;
       return;
     }
-    const data = await getJson("/api/meta");
+    const data = await getJson("api/meta");
     if (!data.ready) {
       $("meta-line").textContent = "No data yet";
       return;
@@ -658,8 +660,8 @@ async function loadInsights() {
   const gen = loadGen;
   try {
     const data = useApi
-      ? await getJson(`/api/insights?${queryString()}`)
-      : staticInsights(matchedRows(shelfCache[state.source] || { rows: [] }));
+      ? await getJson(`api/insights?${queryString()}`)
+      : staticInsights(matchedRows(await shelfOf()));
     if (gen !== loadGen) return;
     renderInsights(data);
   } catch {
@@ -674,8 +676,8 @@ async function loadCats() {
   box.innerHTML = "";
   try {
     const data = useApi
-      ? await getJson(`/api/categories?source=${state.source}`)
-      : { categories: (shelfCache[state.source] || {}).categories || [] };
+      ? await getJson(`api/categories?source=${state.source}`)
+      : { categories: (await shelfOf()).categories || [] };
     if (gen !== loadGen) return;
     const cats = data.categories || [];
     const max = Math.max(1, ...cats.map((c) => Number(c.demand) || 0));
@@ -725,7 +727,7 @@ async function loadPain() {
     const p = new URLSearchParams({ source: state.source, category: cat });
     if (state.source === "chrome" && state.itemCategory) p.set("itemCategory", state.itemCategory);
     if (state.jobIds?.length) p.set("ids", state.jobIds.join(","));
-    const data = await getJson(`/api/pain?${p}`, painAbort.signal);
+    const data = await getJson(`api/pain?${p}`, painAbort.signal);
     if (gen !== loadGen || cat !== state.category) return;
     const titleBit = state.jobLabel || niceName(cat);
     $("pain-title").textContent = `What to build in ${titleBit}`;
@@ -795,7 +797,7 @@ async function loadJobs() {
   try {
     const p = new URLSearchParams({ source: state.source, category: cat });
     if (state.source === "chrome" && state.itemCategory) p.set("itemCategory", state.itemCategory);
-    const data = await getJson(`/api/groups?${p}`);
+    const data = await getJson(`api/groups?${p}`);
     if (gen !== loadGen || cat !== state.category) return;
     grid.innerHTML = "";
     if (!data.groups?.length) {
@@ -1006,24 +1008,47 @@ if (new URLSearchParams(location.search).get("source") === "jira") {
   state.minReviews = 0;
 }
 
-bindNav();
+function isStaticHost() {
+  const host = location.hostname;
+  return host.endsWith("github.io") || location.protocol === "file:";
+}
 
-async function boot() {
-  try {
-    const data = await getJson("/api/meta");
-    if (!data?.ready) throw new Error("not ready");
-    useApi = true;
-  } catch {
-    useApi = false;
-    await shelfOf("chrome");
-    await shelfOf("jira");
-  }
-  bind();
+function applySourceUi() {
   if (state.source === "jira") {
     $("type-field").hidden = true;
     $("min-reviews").value = "0";
     $("src-chrome").setAttribute("aria-pressed", "false");
     $("src-jira").setAttribute("aria-pressed", "true");
+  } else {
+    $("type-field").hidden = false;
+    $("src-chrome").setAttribute("aria-pressed", "true");
+    $("src-jira").setAttribute("aria-pressed", "false");
+  }
+}
+
+bindNav();
+applySourceUi();
+bind();
+$("status").textContent = `Loading ${state.source === "jira" ? "Jira" : "Chrome"}…`;
+
+async function boot() {
+  try {
+    if (isStaticHost()) throw new Error("static host");
+    const data = await Promise.race([
+      getJson("api/meta"),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("api timeout")), 800)),
+    ]);
+    if (!data?.ready) throw new Error("not ready");
+    useApi = true;
+  } catch {
+    useApi = false;
+    try {
+      await shelfOf(state.source);
+    } catch (err) {
+      $("status").textContent = `Could not load ${state.source}. ${err.message}`;
+      return;
+    }
+    shelfOf(state.source === "jira" ? "chrome" : "jira").catch(() => {});
   }
   loadAll();
 }
