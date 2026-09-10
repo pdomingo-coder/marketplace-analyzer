@@ -6,16 +6,16 @@ Local ranking tool for the Chrome Web Store and the Jira Marketplace. Use it to 
 
 Send this link: [https://pdomingo-coder.github.io/marketplace-analyzer/](https://pdomingo-coder.github.io/marketplace-analyzer/)
 
-That is the GitHub page. Your boss clicks it. No npm. No clone.
+That is Chrome. Jira is the same page, other button: [https://pdomingo-coder.github.io/marketplace-analyzer/?source=jira](https://pdomingo-coder.github.io/marketplace-analyzer/?source=jira)
 
-Or double-click **[public/ideas.html](public/ideas.html)** from the folder. Same briefs, no server.
+No npm. No clone.
 
 - [ideas.html](https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html) — GMB Everywhere feature map
 - [lanes.html](https://pdomingo-coder.github.io/marketplace-analyzer/lanes.html) — GBP and WhatsApp
 - [cs.html](https://pdomingo-coder.github.io/marketplace-analyzer/cs.html) — Helpdesk AI
 - [movers.html](https://pdomingo-coder.github.io/marketplace-analyzer/movers.html) — Week growth
 
-The live Chrome/Jira shelf still needs `npm start` on this computer. Skip it unless you want the sorter.
+The public Chrome list is the top 3,000 busy extensions. The full 400k dump still needs `npm start` on this computer.
 
 Nothing is uploaded. Chrome comes from a CSV on disk. Jira comes from Atlassian’s public Marketplace API.
 

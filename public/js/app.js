@@ -51,10 +51,113 @@ function rating(n) {
   return n == null || n === "" ? "—" : Number(n).toFixed(2);
 }
 
+let useApi = true;
+const shelfCache = { chrome: null, jira: null };
+
 async function getJson(path, signal) {
   const res = await fetch(path, { signal });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
+}
+
+async function shelfOf(source = state.source) {
+  if (!shelfCache[source]) {
+    shelfCache[source] = await getJson(`data/${source}-shelf.json`);
+  }
+  return shelfCache[source];
+}
+
+function matchedRows(data) {
+  const q = state.q.toLowerCase();
+  const rows = (data.rows || []).filter((row) => {
+    if (q) {
+      const hay = `${row.name || ""} ${row.author || ""}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    if (state.category && row.category !== state.category) return false;
+    if (state.jobIds?.length && !state.jobIds.includes(row.listing_id)) return false;
+    if (state.source === "chrome" && state.itemCategory && row.item_category !== state.itemCategory) {
+      return false;
+    }
+    if ((Number(row.demand) || 0) < state.minDemand) return false;
+    if (state.minRating && (Number(row.rating) || 0) < state.minRating) return false;
+    if ((Number(row.review_count) || 0) < state.minReviews) return false;
+    return true;
+  });
+  const key = state.sort === "reviews" ? "review_count" : state.sort;
+  rows.sort(
+    (a, b) =>
+      (Number(b[key]) || 0) - (Number(a[key]) || 0) ||
+      (Number(b.demand) || 0) - (Number(a.demand) || 0)
+  );
+  return rows;
+}
+
+function yearAgo() {
+  const d = new Date();
+  d.setDate(d.getDate() - 365);
+  return d.toISOString().slice(0, 10);
+}
+
+function staticInsights(rows) {
+  const demandFloor = state.source === "jira" ? 500 : 10000;
+  const rated = rows.filter((row) => Number(row.rating) > 0);
+  const avg = rated.length
+    ? rated.reduce((sum, row) => sum + Number(row.rating), 0) / rated.length
+    : null;
+  const cut = yearAgo();
+  const byCat = new Map();
+  for (const row of rows) {
+    if (!row.category) continue;
+    const cur = byCat.get(row.category) || { category: row.category, n: 0, demand: 0, ratingSum: 0, rated: 0 };
+    cur.n += 1;
+    cur.demand += Number(row.demand) || 0;
+    if (Number(row.rating) > 0) {
+      cur.ratingSum += Number(row.rating);
+      cur.rated += 1;
+    }
+    byCat.set(row.category, cur);
+  }
+  const cats = [...byCat.values()].map((cat) => ({
+    ...cat,
+    avg_rating: cat.rated ? cat.ratingSum / cat.rated : null,
+  }));
+  const better = cats
+    .filter((cat) => cat.n >= 5 && cat.avg_rating && cat.avg_rating < 4.2 && cat.demand >= demandFloor * 5)
+    .map((cat) => ({
+      ...cat,
+      gap: (5 - cat.avg_rating) * Math.log(cat.demand + 1),
+    }))
+    .sort((a, b) => b.gap - a.gap)
+    .slice(0, 5);
+  const stale = rows
+    .filter(
+      (row) =>
+        row.last_update &&
+        String(row.last_update).slice(0, 10) < cut &&
+        (Number(row.demand) || 0) >= demandFloor
+    )
+    .sort((a, b) => (Number(b.demand) || 0) - (Number(a.demand) || 0))
+    .slice(0, 5);
+  const thin = cats
+    .filter((cat) => cat.n >= 5 && cat.n <= 80 && cat.demand >= demandFloor * 10)
+    .map((cat) => ({ ...cat, demand_per: cat.demand / cat.n }))
+    .sort((a, b) => b.demand_per - a.demand_per)
+    .slice(0, 5);
+  return {
+    ready: true,
+    summary: {
+      listings: rows.length,
+      avg_rating: avg,
+      weak_rated: rows.filter(
+        (row) => Number(row.rating) > 0 && Number(row.rating) < 3.5 && (Number(row.review_count) || 0) >= (state.minReviews || 20)
+      ).length,
+      stale: stale.length,
+    },
+    better,
+    stale,
+    thin,
+  };
 }
 
 function queryString() {
@@ -186,6 +289,10 @@ function resetFilters() {
 
 function setSource(source) {
   state.source = source;
+  const url = new URL(location.href);
+  if (source === "jira") url.searchParams.set("source", "jira");
+  else url.searchParams.delete("source");
+  history.replaceState({}, "", url);
   state.offset = 0;
   state.category = "";
   state.job = "";
@@ -304,7 +411,16 @@ async function loadList() {
   const gen = loadGen;
   $("status").textContent = "Loading…";
   try {
-    const data = await getJson(`/api/top?${queryString()}`);
+    const data = useApi
+      ? await getJson(`/api/top?${queryString()}`)
+      : (() => {
+          const rows = matchedRows(shelfCache[state.source] || { rows: [] });
+          return {
+            ready: true,
+            rows: rows.slice(state.offset, state.offset + state.limit),
+            total: rows.length,
+          };
+        })();
     if (gen !== loadGen) return;
     renderRows(data);
   } catch (err) {
@@ -423,6 +539,10 @@ function renderGrowth(data) {
 async function loadGrowth() {
   const box = $("growth");
   const gen = loadGen;
+  if (!useApi) {
+    box.hidden = true;
+    return;
+  }
   if (growthAbort) growthAbort.abort();
   growthAbort = new AbortController();
   box.hidden = false;
@@ -446,6 +566,13 @@ async function loadGrowth() {
 
 async function loadMeta() {
   try {
+    if (!useApi) {
+      const chrome = await shelfOf("chrome");
+      const jira = await shelfOf("jira");
+      $("meta-line").textContent =
+        `${Number(chrome.total || chrome.rows?.length || 0).toLocaleString()} Chrome listings · ${Number(jira.total || jira.rows?.length || 0).toLocaleString()} Jira apps`;
+      return;
+    }
     const data = await getJson("/api/meta");
     if (!data.ready) {
       $("meta-line").textContent = "No data yet";
@@ -530,7 +657,9 @@ function renderInsights(data) {
 async function loadInsights() {
   const gen = loadGen;
   try {
-    const data = await getJson(`/api/insights?${queryString()}`);
+    const data = useApi
+      ? await getJson(`/api/insights?${queryString()}`)
+      : staticInsights(matchedRows(shelfCache[state.source] || { rows: [] }));
     if (gen !== loadGen) return;
     renderInsights(data);
   } catch {
@@ -544,7 +673,9 @@ async function loadCats() {
   const box = $("cats");
   box.innerHTML = "";
   try {
-    const data = await getJson(`/api/categories?source=${state.source}`);
+    const data = useApi
+      ? await getJson(`/api/categories?source=${state.source}`)
+      : { categories: (shelfCache[state.source] || {}).categories || [] };
     if (gen !== loadGen) return;
     const cats = data.categories || [];
     const max = Math.max(1, ...cats.map((c) => Number(c.demand) || 0));
@@ -572,6 +703,10 @@ async function loadPain() {
   const box = $("pain");
   const note = $("pain-note");
   if (painAbort) painAbort.abort();
+  if (!useApi) {
+    box.hidden = true;
+    return;
+  }
   if (!state.category) {
     box.hidden = true;
     note.hidden = true;
@@ -647,7 +782,7 @@ function renderPain(data) {
 async function loadJobs() {
   const box = $("jobs");
   const grid = $("job-grid");
-  if (!state.category) {
+  if (!useApi || !state.category) {
     box.hidden = true;
     grid.innerHTML = "";
     return;
@@ -877,26 +1012,20 @@ async function boot() {
   try {
     const data = await getJson("/api/meta");
     if (!data?.ready) throw new Error("not ready");
-    $("static-hub").hidden = true;
-    $("live-app").hidden = false;
-    const bits = (data.counts || []).map((row) => {
-      const label = row.source === "jira" ? "Jira apps" : "Chrome listings";
-      return `${Number(row.n).toLocaleString()} ${label}`;
-    });
-    $("meta-line").textContent = bits.join(" · ") || "Loaded on this computer";
-    bind();
-    if (state.source === "jira") {
-      $("type-field").hidden = true;
-      $("min-reviews").value = "0";
-      $("src-chrome").setAttribute("aria-pressed", "false");
-      $("src-jira").setAttribute("aria-pressed", "true");
-    }
-    loadAll();
+    useApi = true;
   } catch {
-    $("static-hub").hidden = false;
-    $("live-app").hidden = true;
-    $("meta-line").textContent = "No install. Open a brief.";
+    useApi = false;
+    await shelfOf("chrome");
+    await shelfOf("jira");
   }
+  bind();
+  if (state.source === "jira") {
+    $("type-field").hidden = true;
+    $("min-reviews").value = "0";
+    $("src-chrome").setAttribute("aria-pressed", "false");
+    $("src-jira").setAttribute("aria-pressed", "true");
+  }
+  loadAll();
 }
 
 boot();

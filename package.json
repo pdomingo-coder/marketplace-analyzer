@@ -11,6 +11,7 @@
     "ingest:movers": "node scripts/ingest-movers.mjs",
     "export:cs": "node scripts/export-cs.mjs",
     "export:jira-growth": "node scripts/export-jira-growth.mjs",
+    "export:shelf": "node scripts/export-shelf.mjs",
     "ingest": "npm run ingest:chrome && npm run ingest:jira",
     "start": "node server.mjs",
     "warm:notes": "node scripts/warm-notes.mjs"
