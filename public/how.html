@@ -4,33 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>How it works · Marketplace Analyzer</title>
+  <meta name="description" content="How Marketplace Analyzer ranks Chrome and Jira demand for GMBEverywhere.com, the all-in-one Google Business Profile tool. Data stays on this computer." />
   <link rel="icon" href="images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <script src="js/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"] },
+          colors: {
+            primary: { 50:"#fefcfb",100:"#f5e8e2",200:"#ead1c5",300:"#dfbaa8",400:"#d4a38b",500:"#c98c6e",600:"#a6653c",700:"#8b542f",800:"#704322",900:"#553215" },
+            neutral: { 50:"#fbf3f0",100:"#f5e8e2",200:"#e5e3da",300:"#d5d2c6",800:"#333333",900:"#16202D" }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
-  <header class="nav">
-    <a class="wordmark" href="index.html">
-      <img src="images/logo.png" alt="GMB Everywhere" width="32" height="32" />
-      <span>Marketplace Analyzer</span>
-    </a>
-    <div class="nav-right">
-      <a class="nav-link" href="movers.html">Week growth</a>
-      <a class="nav-link" href="cs.html">Helpdesk AI</a>
-      <a class="nav-link" href="lanes.html">GBP & WhatsApp</a>
-      <a class="nav-link" href="ideas.html">GMBE ideas</a>
-      <a class="nav-link" href="how.html" aria-current="page">How it works</a>
-      <a class="btn btn--primary" href="index.html">Open the tool</a>
+<body class="bg-neutral-50 text-neutral-800 font-sans text-sm">
+  <nav class="bg-neutral-50 shadow-sm sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-center h-16">
+        <a href="index.html" class="flex items-center">
+          <img src="images/logo.png" alt="GMB Everywhere" class="h-10 w-10" />
+        </a>
+        <button type="button" id="nav-toggle" class="absolute right-0 lg:hidden text-neutral-900 p-1.5 rounded-md" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex justify-center items-center gap-1 pb-3">
+          <a href="index.html" class="text-xs font-medium bg-primary-200 hover:bg-primary-300 text-primary-900 px-3 py-1.5 rounded-md">Shelf</a>
+          <a href="movers.html" class="text-xs font-medium bg-primary-200 hover:bg-primary-300 text-primary-900 px-3 py-1.5 rounded-md">Week growth</a>
+          <a href="cs.html" class="text-xs font-medium bg-primary-200 hover:bg-primary-300 text-primary-900 px-3 py-1.5 rounded-md">Helpdesk AI</a>
+          <a href="lanes.html" class="text-xs font-medium bg-primary-200 hover:bg-primary-300 text-primary-900 px-3 py-1.5 rounded-md">GBP & WhatsApp</a>
+          <a href="ideas.html" class="text-xs font-medium bg-primary-200 hover:bg-primary-300 text-primary-900 px-3 py-1.5 rounded-md">GMBE ideas</a>
+          <a href="how.html" aria-current="page" class="text-xs font-medium bg-primary-600 text-white px-3 py-1.5 rounded-md">How it works</a>
+          <a href="index.html" class="bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-bold px-4 py-2">Open the tool</a>
+      </div>
+      <div id="nav-menu" class="lg:hidden pb-3" hidden>
+        <a href="index.html" class="block text-xs font-medium text-neutral-800 hover:text-primary-600 px-2 py-2">Shelf</a>
+        <a href="movers.html" class="block text-xs font-medium text-neutral-800 hover:text-primary-600 px-2 py-2">Week growth</a>
+        <a href="cs.html" class="block text-xs font-medium text-neutral-800 hover:text-primary-600 px-2 py-2">Helpdesk AI</a>
+        <a href="lanes.html" class="block text-xs font-medium text-neutral-800 hover:text-primary-600 px-2 py-2">GBP & WhatsApp</a>
+        <a href="ideas.html" class="block text-xs font-medium text-neutral-800 hover:text-primary-600 px-2 py-2">GMBE ideas</a>
+        <a href="how.html" aria-current="page" class="block text-xs font-medium text-primary-600 px-2 py-2">How it works</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="wrap how">
-    <section class="lede">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 how">
+    <section class="mb-8 max-w-2xl">
       <p class="meta-line">Plain English</p>
-      <h1>How this tool works</h1>
-      <p>It does not guess. It counts real apps people already use, then shows where a better one could win.</p>
+      <h1 class="text-4xl font-bold text-neutral-900 mt-2">How this tool works</h1>
+      <p class="text-sm text-neutral-800 mt-3">It does not guess. It counts real apps people already use, then shows where a better one could win.</p>
     </section>
 
     <ol class="how-steps">
@@ -121,6 +151,7 @@
 
     <section class="how-faq">
       <h2>Quick questions</h2>
+      <h3 class="sr-only">FAQ</h3>
       <h4>Where does the data live?</h4>
       <p>On this computer, in a local file. The app runs at 127.0.0.1. It is not on the public web.</p>
       <h4>Why is a box empty?</h4>
@@ -138,6 +169,21 @@
     </section>
 
     <p class="how-cta"><a class="btn btn--primary" href="index.html">Back to the tool</a></p>
+
+    <footer class="mt-10 pt-6 border-t border-neutral-200 text-xs text-neutral-800 pb-8">
+      <p>
+        Made for
+        <a href="https://www.gmbeverywhere.com/" class="font-semibold text-neutral-900 hover:text-primary-600">GMB Everywhere</a>
+        and
+        <a href="https://www.gmbeverywhere.com/guides/" class="font-semibold text-neutral-900 hover:text-primary-600">GBP guides</a>.
+        Jira counts come from the
+        <a href="https://marketplace.atlassian.com/" target="_blank" rel="noopener" class="font-semibold text-neutral-900 hover:text-primary-600">Atlassian Marketplace</a>.
+      </p>
+    </footer>
   </main>
+  <script type="module">
+    const { bindNav } = await import("./js/nav.js");
+    bindNav();
+  </script>
 </body>
 </html>

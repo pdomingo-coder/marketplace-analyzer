@@ -1,12 +1,6 @@
-const $ = (id) => document.getElementById(id);
+const { escapeHtml } = await import("./shared.js");
 
-function escapeHtml(s) {
-  return String(s || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
+const $ = (id) => document.getElementById(id);
 
 function fmt(n) {
   if (n == null || !Number.isFinite(Number(n))) return "—";

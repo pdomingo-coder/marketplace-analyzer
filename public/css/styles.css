@@ -1,3 +1,4 @@
+/* JS-built rows, bars, and filters. Page chrome is Tailwind. */
 html, body { overflow-x: clip; }
 
 :root {
@@ -19,73 +20,23 @@ html, body { overflow-x: clip; }
 
 * { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  background: var(--color-paper);
-  color: var(--color-ink-2);
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
 h1, h2, h3, h4 {
   font-style: normal;
   color: var(--color-ink);
   margin: 0;
 }
 
-h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
 h2 { font-size: 1.25rem; font-weight: 700; }
 h3 { font-size: 1rem; font-weight: 600; }
 
 a { color: var(--color-ink); text-decoration-color: var(--color-accent-soft); }
 a:hover { color: var(--color-accent); }
 
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--color-rule);
-  background: var(--color-paper);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.wordmark {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--color-ink);
-  text-decoration: none;
-}
-
-.wordmark img {
-  width: 32px;
-  height: 32px;
-  display: block;
-}
-
-.nav-right, .source-switch {
+.source-switch {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
-
-.nav-link {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-ink-2);
-  text-decoration: none;
-  padding: 0.5rem 0.35rem;
-}
-
-.nav-link:hover, .nav-link[aria-current="page"] { color: var(--color-accent); }
 
 .source-switch button,
 .kcmd,
@@ -128,14 +79,6 @@ button:disabled, .btn[disabled] {
   opacity: 0.45;
   cursor: not-allowed;
 }
-
-.wrap {
-  width: min(1024px, calc(100% - 2rem));
-  margin: 0 auto;
-}
-
-.lede { padding: 1.5rem 0 1rem; max-width: 40rem; }
-.lede p { margin: 0.4rem 0 0; color: var(--color-ink-2); }
 
 .meta-line {
   font-size: 0.75rem;
@@ -667,7 +610,7 @@ input, select {
   font-weight: 600;
   color: var(--color-ink);
   background: var(--color-accent-soft);
-  border-radius: 4px;
+  border-radius: var(--radius);
   padding: 0.12rem 0.4rem;
 }
 
@@ -942,8 +885,6 @@ input, select {
 
 .how-cta { margin: 1.75rem 0 0; }
 
-.wrap--wide { width: min(1120px, calc(100% - 2rem)); }
-
 .movers-charts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1113,7 +1054,6 @@ input, select {
 @media (max-width: 768px) {
   .growth-row { grid-template-columns: 2rem minmax(0, 1fr) 5.5rem; }
   .growth-spark { display: none; }
-  .nav { flex-wrap: wrap; }
   .kpis, .ideas, .toolbar, .pain-list, .job-grid, .movers-charts, .brief-stats, .brief-split { grid-template-columns: minmax(0, 1fr); }
   .bar { grid-template-columns: minmax(0, 1fr) auto; }
   .bar-track { grid-column: 1 / -1; }

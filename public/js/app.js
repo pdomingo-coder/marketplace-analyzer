@@ -1,3 +1,6 @@
+const { escapeHtml, niceName, categoryHtml } = await import("./shared.js");
+const { bindNav } = await import("./nav.js");
+
 const DEFAULTS = {
   sort: "demand",
   q: "",
@@ -46,33 +49,6 @@ function fmt(n) {
 
 function rating(n) {
   return n == null || n === "" ? "—" : Number(n).toFixed(2);
-}
-
-function categoryParts(cat) {
-  return String(cat || "")
-    .split("/")
-    .map((part) => niceName(part.trim()))
-    .filter(Boolean);
-}
-
-function categoryHtml(cat) {
-  return categoryParts(cat)
-    .map((part) => `<span class="cat-pill">${escapeHtml(part)}</span>`)
-    .join("");
-}
-
-function niceName(s) {
-  return String(s || "")
-    .replaceAll("_", " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function escapeHtml(s) {
-  return String(s || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
 }
 
 async function getJson(path, signal) {
@@ -895,6 +871,7 @@ if (new URLSearchParams(location.search).get("source") === "jira") {
   state.minReviews = 0;
 }
 
+bindNav();
 bind();
 if (state.source === "jira") {
   $("type-field").hidden = true;

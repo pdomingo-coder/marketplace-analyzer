@@ -1,3 +1,6 @@
+const { escapeHtml, niceName, categoryHtml } = await import("./shared.js");
+const { bindNav } = await import("./nav.js");
+
 const LIMIT = 50;
 const AGE = {
   new: { key: "new", label: "Under 90 days", max: 90 },
@@ -36,33 +39,6 @@ let all = [];
 let meta = { asOf: "", matched: 0, count: 0 };
 
 const $ = (id) => document.getElementById(id);
-
-function escapeHtml(s) {
-  return String(s || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
-function niceName(s) {
-  return String(s || "")
-    .replaceAll("_", " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function categoryParts(cat) {
-  return String(cat || "")
-    .split("/")
-    .map((part) => niceName(part.trim()))
-    .filter(Boolean);
-}
-
-function categoryHtml(cat) {
-  return categoryParts(cat)
-    .map((part) => `<span class="cat-pill">${escapeHtml(part)}</span>`)
-    .join("");
-}
 
 function fmt(n) {
   const x = Number(n);
@@ -523,6 +499,7 @@ for (const btn of document.querySelectorAll(".sorts [data-sort]")) {
   });
 }
 
+bindNav();
 $("status").textContent = "Loading the 10k+ week file…";
 const data = await fetch("data/movers.json").then((r) => {
   if (!r.ok) throw new Error("Missing movers.json. Run npm run ingest:movers");

@@ -2,9 +2,23 @@
 
 Local ranking tool for the Chrome Web Store and the Jira Marketplace. Use it to see what is already in demand before you pick a product to build.
 
+## Just open this. No install.
+
+Double-click **[public/ideas.html](public/ideas.html)**. That is the GMB Everywhere feature map. It is plain HTML. No npm. No server.
+
+Same way, no install:
+
+- [public/lanes.html](public/lanes.html) — GBP and WhatsApp brief
+- [public/cs.html](public/cs.html) — Helpdesk AI brief
+- [public/how.html](public/how.html) — How the tool works
+
+Or send this link: [https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html](https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html)
+
+`index.html` (the live shelf) and `movers.html` (week growth) need a local server. Skip those unless you want the sorter.
+
 Nothing is uploaded. Chrome comes from a CSV on disk. Jira comes from Atlassian’s public Marketplace API.
 
-## Run
+## Run the live shelf (optional)
 
 ```bash
 cd /Users/paolodomingo/Projects/marketplace-analyzer
@@ -55,8 +69,14 @@ Default file: `/Users/paolodomingo/Downloads/results (1).csv`. That list is join
 
 ## Files
 
+Frontend follows GMB Everywhere HTML / JS / CSS layout (local Tailwind, Inter, official logo):
+
+- [`public/index.html`](public/index.html)
+- [`public/css/styles.css`](public/css/styles.css)
+- [`public/js/tailwind.min.js`](public/js/tailwind.min.js)
+- [`public/js/app.js`](public/js/app.js)
+- [`public/images/`](public/images/)
 - [`scripts/ingest-chrome.mjs`](scripts/ingest-chrome.mjs)
 - [`scripts/ingest-jira.mjs`](scripts/ingest-jira.mjs)
 - [`server.mjs`](server.mjs)
-- [`public/`](public/)
 - `data/app.db` — generated, gitignored
