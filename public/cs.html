@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Helpdesk AI · Marketplace Analyzer</title>
+  <title>Helpdesk AI brief · Marketplace Analyzer</title>
   <link rel="icon" href="images/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,26 +24,45 @@
     </div>
   </header>
 
-  <main class="wrap wrap--wide">
-    <section class="lede">
-      <p class="meta-line">Chrome store · eesel / MyAskAI-like</p>
-      <h1>Are helpdesk copilots growing?</h1>
-      <p>Hand-picked apps that draft customer replies or sit on Zendesk, Gorgias, Intercom, Gmail. Not a keyword scrape. MyAskAI has no real Chrome listing.</p>
+  <main class="wrap wrap--wide brief">
+    <p class="meta-line">Chrome Web Store brief · 10 Sep 2026</p>
+    <p class="brief-call" id="call">Cold</p>
+    <h1>Helpdesk copilots are not taking off on Chrome</h1>
+    <p class="brief-lead">We checked extensions like eesel: AI that drafts customer replies inside Zendesk, Gorgias, Intercom, or Gmail. MyAskAI has no real listing. This is the store only, not their SaaS.</p>
+
+    <section class="brief-stats" id="stats"></section>
+
+    <section class="brief-take">
+      <h2>The read</h2>
+      <ol class="brief-points" id="points"></ol>
     </section>
 
-    <section class="cs-verdict" id="verdict">Loading…</section>
-    <section class="kpis" id="kpis"></section>
-
-    <section class="movers-charts" aria-label="Users in this set">
-      <article class="movers-chart cs-chart--wide">
-        <h2>Direct copilots by users</h2>
-        <p>The actual product: AI that drafts helpdesk replies. Aug 25 dump counts. Most never reach the 10k week-growth file.</p>
+    <section class="brief-split">
+      <article>
+        <h2>The real product</h2>
+        <p>AI that writes helpdesk replies. These are small. Almost none show week-over-week growth because they never hit 10,000 Chrome users.</p>
         <div class="bars" id="direct-bars"></div>
+      </article>
+      <article>
+        <h2>Do not mix these in</h2>
+        <p>These look busy. Support teams may use them. They are search or snippets, not a copilot on tickets.</p>
+        <div class="bars" id="adj-bars"></div>
       </article>
     </section>
 
-    <p class="status" id="status"></p>
-    <section id="tables"></section>
+    <section class="cs-block">
+      <h2>Direct copilots</h2>
+      <p>Hand-picked. Sorted by Chrome users from the 25 Aug dump.</p>
+      <ol class="list" id="direct-list"></ol>
+    </section>
+
+    <section class="cs-block">
+      <h2>Inbox tools and lookalikes</h2>
+      <p>Hiver is the one large Gmail customer-service listing. It lost users this month.</p>
+      <ol class="list" id="other-list"></ol>
+    </section>
+
+    <p class="brief-note" id="note"></p>
   </main>
   <script src="cs.js" type="module"></script>
 </body>
