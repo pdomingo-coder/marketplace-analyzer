@@ -972,6 +972,20 @@ input, select {
   color: #a13a2a;
 }
 
+.brief-call--warm { color: #704322; }
+
+.brief-jump {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  background: #fefcfb;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius);
+  max-width: 44rem;
+}
+
+.brief-jump p { margin: 0 0 0.35rem; }
+.brief-jump a { font-weight: 600; }
+
 .brief-lead {
   max-width: 40rem;
   margin: 0.5rem 0 1.25rem;
