@@ -1093,6 +1093,10 @@ input, select {
   grid-template-columns: minmax(0, 1fr) 6rem 7rem 6.5rem;
 }
 
+.feat-row {
+  grid-template-columns: 11rem minmax(0, 1fr) 6.5rem minmax(10rem, 16rem);
+}
+
 .bars a.bar { text-decoration: none; color: inherit; }
 
 .cat-pill--miss {
@@ -1115,6 +1119,7 @@ input, select {
   .bar-track { grid-column: 1 / -1; }
   .row, .row-head, .movers-row { grid-template-columns: 2rem minmax(0, 1fr) 5.5rem; }
   .cs-row { grid-template-columns: minmax(0, 1fr) 4.5rem 5.5rem; }
+  .feat-row { grid-template-columns: minmax(0, 1fr); }
   .hide-sm { display: none !important; }
   .how-facts { grid-template-columns: minmax(0, 1fr); }
 }
