@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Helpdesk AI · Marketplace Analyzer</title>
+  <link rel="icon" href="images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="wordmark" href="index.html">
+      <img src="images/logo.png" alt="GMB Everywhere" width="32" height="32" />
+      <span>Marketplace Analyzer</span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="index.html">Shelf</a>
+      <a class="nav-link" href="movers.html">Week growth</a>
+      <a class="nav-link" href="cs.html" aria-current="page">Helpdesk AI</a>
+      <a class="nav-link" href="how.html">How it works</a>
+    </div>
+  </header>
+
+  <main class="wrap wrap--wide">
+    <section class="lede">
+      <p class="meta-line">Chrome store · eesel / MyAskAI-like</p>
+      <h1>Are helpdesk copilots growing?</h1>
+      <p>Hand-picked apps that draft customer replies or sit on Zendesk, Gorgias, Intercom, Gmail. Not a keyword scrape. MyAskAI has no real Chrome listing.</p>
+    </section>
+
+    <section class="cs-verdict" id="verdict">Loading…</section>
+    <section class="kpis" id="kpis"></section>
+
+    <section class="movers-charts" aria-label="Users in this set">
+      <article class="movers-chart cs-chart--wide">
+        <h2>Direct copilots by users</h2>
+        <p>The actual product: AI that drafts helpdesk replies. Aug 25 dump counts. Most never reach the 10k week-growth file.</p>
+        <div class="bars" id="direct-bars"></div>
+      </article>
+    </section>
+
+    <p class="status" id="status"></p>
+    <section id="tables"></section>
+  </main>
+  <script src="cs.js" type="module"></script>
+</body>
+</html>

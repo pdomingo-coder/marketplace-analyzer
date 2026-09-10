@@ -960,6 +960,31 @@ input, select {
   grid-template-columns: 3rem minmax(0, 1fr) 6.5rem 9.5rem 5rem 5.5rem 7rem;
 }
 
+.cs-verdict {
+  background: #fefcfb;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.05rem;
+  margin-bottom: 1rem;
+}
+
+.cs-verdict h2 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.cs-verdict p { margin: 0 0 0.5rem; }
+.cs-verdict ul { margin: 0; padding-left: 1.1rem; }
+.cs-verdict li { margin: 0.35rem 0; }
+
+.cs-block { margin: 1.5rem 0 2rem; }
+.cs-block h2 { margin-bottom: 0.25rem; }
+.cs-block > p { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--color-ink-2); }
+
+.cs-row {
+  grid-template-columns: minmax(0, 1fr) 6rem 6.5rem 5.5rem 5.5rem 7rem;
+}
+
+.cs-chart--wide { grid-column: 1 / -1; }
+
+.bars a.bar { text-decoration: none; color: inherit; }
+
 .cat-pill--miss {
   background: var(--color-paper-2);
   color: var(--color-ink-2);
@@ -978,7 +1003,7 @@ input, select {
   .kpis, .ideas, .toolbar, .pain-list, .job-grid, .movers-charts { grid-template-columns: minmax(0, 1fr); }
   .bar { grid-template-columns: minmax(0, 1fr) auto; }
   .bar-track { grid-column: 1 / -1; }
-  .row, .row-head, .movers-row { grid-template-columns: 2rem minmax(0, 1fr) 5.5rem; }
+  .row, .row-head, .movers-row, .cs-row { grid-template-columns: 2rem minmax(0, 1fr) 5.5rem; }
   .hide-sm { display: none !important; }
   .how-facts { grid-template-columns: minmax(0, 1fr); }
 }
