@@ -227,6 +227,16 @@ button:disabled, .btn[disabled] {
   flex-direction: column;
 }
 
+a.idea {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.idea:hover {
+  color: inherit;
+  border-color: var(--color-accent);
+}
+
 .idea h3 { margin-bottom: 0.25rem; }
 .idea p {
   margin: 0 0 0.65rem;

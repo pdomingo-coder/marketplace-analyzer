@@ -711,7 +711,7 @@ const COMMANDS = [
   { id: "rating", label: "Sort by stars", run: () => setSort("rating") },
   { id: "opportunity", label: "Sort by gap", run: () => setSort("opportunity") },
   { id: "reset", label: "Reset filters", run: () => resetFilters() },
-  { id: "how", label: "How it works", run: () => { window.location.href = "/how.html"; } },
+  { id: "how", label: "How it works", run: () => { window.location.href = "how.html"; } },
   { id: "search", label: "Search", run: () => $("q").focus() },
 ];
 
@@ -872,11 +872,31 @@ if (new URLSearchParams(location.search).get("source") === "jira") {
 }
 
 bindNav();
-bind();
-if (state.source === "jira") {
-  $("type-field").hidden = true;
-  $("min-reviews").value = "0";
-  $("src-chrome").setAttribute("aria-pressed", "false");
-  $("src-jira").setAttribute("aria-pressed", "true");
+
+async function boot() {
+  try {
+    const data = await getJson("/api/meta");
+    if (!data?.ready) throw new Error("not ready");
+    $("static-hub").hidden = true;
+    $("live-app").hidden = false;
+    const bits = (data.counts || []).map((row) => {
+      const label = row.source === "jira" ? "Jira apps" : "Chrome listings";
+      return `${Number(row.n).toLocaleString()} ${label}`;
+    });
+    $("meta-line").textContent = bits.join(" · ") || "Loaded on this computer";
+    bind();
+    if (state.source === "jira") {
+      $("type-field").hidden = true;
+      $("min-reviews").value = "0";
+      $("src-chrome").setAttribute("aria-pressed", "false");
+      $("src-jira").setAttribute("aria-pressed", "true");
+    }
+    loadAll();
+  } catch {
+    $("static-hub").hidden = false;
+    $("live-app").hidden = true;
+    $("meta-line").textContent = "No install. Open a brief.";
+  }
 }
-loadAll();
+
+boot();

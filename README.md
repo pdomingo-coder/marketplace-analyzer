@@ -4,17 +4,18 @@ Local ranking tool for the Chrome Web Store and the Jira Marketplace. Use it to 
 
 ## Just open this. No install.
 
-Double-click **[public/ideas.html](public/ideas.html)**. That is the GMB Everywhere feature map. It is plain HTML. No npm. No server.
+Send this link: [https://pdomingo-coder.github.io/marketplace-analyzer/](https://pdomingo-coder.github.io/marketplace-analyzer/)
 
-Same way, no install:
+That is the GitHub page. Your boss clicks it. No npm. No clone.
 
-- [public/lanes.html](public/lanes.html) — GBP and WhatsApp brief
-- [public/cs.html](public/cs.html) — Helpdesk AI brief
-- [public/how.html](public/how.html) — How the tool works
+Or double-click **[public/ideas.html](public/ideas.html)** from the folder. Same briefs, no server.
 
-Or send this link: [https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html](https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html)
+- [ideas.html](https://pdomingo-coder.github.io/marketplace-analyzer/ideas.html) — GMB Everywhere feature map
+- [lanes.html](https://pdomingo-coder.github.io/marketplace-analyzer/lanes.html) — GBP and WhatsApp
+- [cs.html](https://pdomingo-coder.github.io/marketplace-analyzer/cs.html) — Helpdesk AI
+- [movers.html](https://pdomingo-coder.github.io/marketplace-analyzer/movers.html) — Week growth
 
-`index.html` (the live shelf) and `movers.html` (week growth) need a local server. Skip those unless you want the sorter.
+The live Chrome/Jira shelf still needs `npm start` on this computer. Skip it unless you want the sorter.
 
 Nothing is uploaded. Chrome comes from a CSV on disk. Jira comes from Atlassian’s public Marketplace API.
 
