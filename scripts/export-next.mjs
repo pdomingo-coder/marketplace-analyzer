@@ -65,7 +65,10 @@ const chromeAll = db
   )
   .all();
 
-const top200 = chromeAll.slice(0, 200).map((row, i) => {
+const CHROME_N = 500;
+const JIRA_N = 300;
+
+const topChrome = chromeAll.slice(0, CHROME_N).map((row, i) => {
   const lane = chromeLane(row);
   return {
     rank: i + 1,
@@ -86,18 +89,19 @@ const top200 = chromeAll.slice(0, 200).map((row, i) => {
 });
 
 const lanes = { school: 0, gmbe: 0, seo: 0, smb: 0, other: 0 };
-for (const row of top200) lanes[row.lane] += 1;
-const bucket900 = top200.filter((r) => r.monthPct >= 8.9 && r.monthPct <= 9.1).length;
+for (const row of topChrome) lanes[row.lane] += 1;
+const bucket900 = topChrome.filter((r) => r.monthPct >= 8.9 && r.monthPct <= 9.1).length;
 
 const chromePayload = {
   asOf: "2026-09-05",
   dump: "ranking-stats-20260825.csv",
   movers: "results (1).csv",
-  count: top200.length,
+  count: topChrome.length,
+  available: chromeAll.length,
   lanes,
   bucket900,
-  lowReviews: top200.filter((r) => r.reviews < 5).length,
-  rows: top200,
+  lowReviews: topChrome.filter((r) => r.reviews < 5).length,
+  rows: topChrome,
 };
 
 const from = "2026-09-02";
@@ -135,7 +139,7 @@ const jira = db
   .filter((row) => row.wowPct != null && row.wow > 0)
   .sort((a, b) => b.wowPct - a.wowPct || (b.wow || 0) - (a.wow || 0));
 
-const useful = jira.filter((row) => row.weekAgo >= 50).slice(0, 100).map((row, i) => ({
+const useful = jira.filter((row) => row.weekAgo >= 50).slice(0, JIRA_N).map((row, i) => ({
   rank: i + 1,
   ...row,
   theme: jiraTheme(row),
@@ -148,6 +152,7 @@ const jiraPayload = {
   from,
   to,
   days: Math.abs(dayDiff(to, from)),
+  count: useful.length,
   grew: jira.length,
   compared: jira.length,
   floor: 50,
@@ -166,8 +171,8 @@ writeFileSync(join(outDir, "jira-next.json"), JSON.stringify(jiraPayload));
 db.close();
 
 console.log(
-  `Chrome next: 200 rows, school ${lanes.school}, seo ${lanes.seo}, smb ${lanes.smb}, gmbe ${lanes.gmbe}, ~900% ${bucket900}`
+  `Chrome next: ${topChrome.length}/${chromeAll.length} rows, school ${lanes.school}, seo ${lanes.seo}, smb ${lanes.smb}, gmbe ${lanes.gmbe}, ~900% ${bucket900}`
 );
 console.log(
-  `Jira next: ${useful.length} apps, ${from} → ${to} (${jiraPayload.days} days), themes ${JSON.stringify(themes)}`
+  `Jira next: ${useful.length} apps, ${from} → ${to} (${jiraPayload.days} days), floor50 ${jira.filter((r) => r.weekAgo >= 50).length}, themes ${JSON.stringify(themes)}`
 );

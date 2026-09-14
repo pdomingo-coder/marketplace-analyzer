@@ -4,8 +4,9 @@ const { bindNav } = await import("./nav.js");
 bindNav();
 
 const LANES = {
-  all: "All 200",
+  all: "All",
   school: "School Chromebook",
+  gmbe: "GMBE-related",
   seo: "SEO",
   smb: "Small business",
   other: "Other",
@@ -13,6 +14,7 @@ const LANES = {
 
 const $ = (id) => document.getElementById(id);
 let rows = [];
+let total = 500;
 let lane = "all";
 
 function pct(n) {
@@ -47,9 +49,9 @@ function render() {
   if (!set.length) {
     const empty = document.createElement("li");
     empty.className = "empty";
-    empty.textContent = "None of the 200 sit in this lane.";
+    empty.textContent = `None of the ${total} sit in this lane.`;
     list.append(empty);
-    $("status").textContent = "0 of 200";
+    $("status").textContent = `0 of ${total}`;
     return;
   }
   for (const row of set) {
@@ -67,7 +69,7 @@ function render() {
     `;
     list.append(li);
   }
-  $("status").textContent = `${set.length} of 200 · sorted by monthly growth`;
+  $("status").textContent = `${set.length} of ${total} · sorted by monthly growth`;
 }
 
 function bind() {
@@ -88,9 +90,12 @@ try {
     return r.json();
   });
   rows = data.rows || [];
+  total = data.count || rows.length;
+  const allBtn = document.querySelector("[data-lane=\"all\"]");
+  if (allBtn) allBtn.textContent = `All ${total}`;
   $("status").textContent = "Loaded.";
   bind();
   render();
 } catch (err) {
-  $("status").textContent = err.message || "Could not load the 200.";
+  $("status").textContent = err.message || "Could not load the list.";
 }

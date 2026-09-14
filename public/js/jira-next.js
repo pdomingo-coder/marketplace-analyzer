@@ -4,7 +4,7 @@ const { bindNav } = await import("./nav.js");
 bindNav();
 
 const THEMES = {
-  all: "All 100",
+  all: "All",
   ai: "AI coding agents",
   admin: "Admin and security",
   planning: "Plans and Gantt",
@@ -17,6 +17,7 @@ const THEMES = {
 
 const $ = (id) => document.getElementById(id);
 let rows = [];
+let total = 300;
 let theme = "all";
 
 function pct(n) {
@@ -46,7 +47,7 @@ function render() {
     empty.className = "empty";
     empty.textContent = "No apps in this theme.";
     list.append(empty);
-    $("status").textContent = "0 of 100";
+    $("status").textContent = `0 of ${total}`;
     return;
   }
   for (const row of set) {
@@ -65,7 +66,7 @@ function render() {
     `;
     list.append(li);
   }
-  $("status").textContent = `${set.length} of 100 · 50+ installs on 2 Sep · sorted by week %`;
+  $("status").textContent = `${set.length} of ${total} · 50+ installs on 2 Sep · sorted by week %`;
 }
 
 function bind() {
@@ -86,9 +87,12 @@ try {
     return r.json();
   });
   rows = data.rows || [];
+  total = data.count || rows.length || 300;
+  const allBtn = document.querySelector("[data-theme=\"all\"]");
+  if (allBtn) allBtn.textContent = `All ${total}`;
   $("status").textContent = "Loaded.";
   bind();
   render();
 } catch (err) {
-  $("status").textContent = err.message || "Could not load the 100.";
+  $("status").textContent = err.message || "Could not load the list.";
 }
